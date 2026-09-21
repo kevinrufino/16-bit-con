@@ -1,0 +1,50 @@
+[
+  {
+    "character": "Mole_artist",
+    "framesTested": 37,
+    "minPawCenterDistance": 0.36950328713040215,
+    "maxPawCenterDistance": 0.9771524707162729,
+    "maximumPawY": -0.9091469049453735,
+    "result": "PASS"
+  },
+  {
+    "character": "Mole_classic",
+    "framesTested": 37,
+    "minPawCenterDistance": 0.36950328713040215,
+    "maxPawCenterDistance": 0.9771524707162729,
+    "maximumPawY": -0.9091469049453735,
+    "result": "PASS"
+  },
+  {
+    "character": "Mole_crew",
+    "framesTested": 37,
+    "minPawCenterDistance": 0.36950328713040215,
+    "maxPawCenterDistance": 0.9771524707162729,
+    "maximumPawY": -0.9091469049453735,
+    "result": "PASS"
+  },
+  {
+    "character": "Mole_gamer",
+    "framesTested": 37,
+    "minPawCenterDistance": 0.36950328713040215,
+    "maxPawCenterDistance": 0.9771524707162729,
+    "maximumPawY": -0.9091469049453735,
+    "result": "PASS"
+  },
+  {
+    "character": "Mole_propeller",
+    "framesTested": 37,
+    "minPawCenterDistance": 0.36950328713040215,
+    "maxPawCenterDistance": 0.9771524707162729,
+    "maximumPawY": -0.9091469049453735,
+    "result": "PASS"
+  },
+  {
+    "character": "Mole_superfan",
+    "framesTested": 37,
+    "minPawCenterDistance": 0.36950328713040215,
+    "maxPawCenterDistance": 0.9771524707162729,
+    "maximumPawY": -0.9091469049453735,
+    "result": "PASS"
+  }
+]

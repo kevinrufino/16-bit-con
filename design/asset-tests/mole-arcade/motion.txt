@@ -1,0 +1,1 @@
+Seamless subtle 8-frame pixel-art loop. The mole nudges the joystick and taps one arcade button, tiny body bob, subtle screen sparkle. Keep face, goggles, cabinet, sandwich and background unchanged. Fixed camera, no zoom or pan. Preserve shapes and palette, no new objects. Return exactly to the initial resting pose.

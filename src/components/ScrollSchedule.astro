@@ -1,0 +1,586 @@
+---
+import { event } from "../design/event";
+import ScheduleScene from "./ScheduleScene.astro";
+const sessions = [
+  {
+    time: "9 am",
+    title: "Boot up. Settle in.",
+    type: "Doors open",
+    place: "Lobby",
+    row: 2,
+    color: "var(--color-accent)",
+    detail:
+      "Coffee in hand. A familiar startup sound. Meet your people before the first big idea of the day.",
+  },
+  {
+    time: "10 am",
+    title: "The future has a past.",
+    type: "Keynote",
+    place: "Main stage",
+    row: 1,
+    color: "var(--color-heading)",
+    detail:
+      "What the early web can teach us about building what comes next. A little perspective from the machines that started it all.",
+  },
+  {
+    time: "11 am",
+    title: "Think in tiny squares.",
+    type: "Pixel workshop",
+    place: "The lab",
+    row: 3,
+    color: "var(--color-accent)",
+    detail:
+      "Make something in 16 pixels. Bring an idea, borrow a few colors, and discover how much a small canvas can hold.",
+  },
+  {
+    time: "1 pm",
+    title: "Grab a byte.",
+    type: "Lunch & free play",
+    place: "Arcade",
+    row: 4,
+    color: "var(--color-heading)",
+    detail:
+      "Trade cartridges, share a table, challenge a stranger. The best conversations happen between levels.",
+  },
+  {
+    time: "2 pm",
+    title: "Built to last. Made to play.",
+    type: "Makers panel",
+    place: "Main stage",
+    row: 1,
+    color: "var(--color-accent)",
+    detail:
+      "Creative constraints, open technology, and joyful tools. Meet the people making room for more play in everyday life.",
+  },
+  {
+    time: "3 pm",
+    title: "Show your strange little thing.",
+    type: "Open demo",
+    place: "The lab",
+    row: 3,
+    color: "var(--color-heading)",
+    detail:
+      "A homebrew game. A wonderfully unnecessary gadget. Five minutes to share the thing you couldn’t stop making.",
+  },
+  {
+    time: "4 pm",
+    title: "One more level.",
+    type: "Chiptune send-off",
+    place: "Arcade",
+    row: 4,
+    color: "var(--color-accent)",
+    detail:
+      "One last high score and a soundtrack for the trip home. Small pixels. Very big feelings.",
+  },
+];
+---
+
+<section id="schedule" class="scroll-schedule" aria-labelledby="lineup-title">
+  <div class="wrap">
+    <div class="schedule-intro">
+      <div>
+        <span class="mono">02 / THE LINEUP</span>
+        <h2 id="lineup-title">
+          A day to
+          <br />
+          get lost in.
+        </h2>
+      </div>
+      <div class="intro-copy">
+        <p>
+          Follow the day. Find your people.
+          <br />
+          There’s a little world in every hour.
+        </p>
+        <p class="mono">
+          {event.date} / {event.location} / EDT
+        </p>
+      </div>
+    </div>
+    <div class="schedule-journey">
+      <div class="map-sticky">
+        <div class="map-heading">
+          <span>16-Bit Con / Day map</span>
+          <button class="motion-toggle" type="button" aria-pressed="false">
+            Pause motion
+          </button>
+        </div>
+        <div class="day-map" aria-label="Convention schedule by time and venue">
+          <div class="map-landscape" aria-hidden="true">
+            <canvas class="calendar-drawing" data-calendar-art></canvas>
+            <video
+              data-calendar-video
+              src="/video/calendar-mole.mp4"
+              muted
+              loop
+              playsinline
+              preload="auto"
+              hidden
+            ></video>
+          </div>
+          <div class="calendar-grid">
+            {sessions.map((s, i) => (
+              <a
+                class="time-label mono"
+                href={`#schedule-event-${i}`}
+                style={`grid-column:${i + 1};grid-row:1`}
+              >
+                {s.time}
+              </a>
+            ))}
+            {Array.from({ length: 28 }, (_, i) => (
+              <div
+                aria-hidden="true"
+                class="map-cell"
+                style={`grid-column:${(i % 7) + 1};grid-row:${Math.floor(i / 7) + 2}`}
+              ></div>
+            ))}
+            {sessions.map((s, i) => (
+              <a
+                href={`#schedule-event-${i}`}
+                class="event-tile"
+                data-tile={i}
+                style={`grid-column:${i + 1};grid-row:${s.row + 1};--tile-color:${s.color}`}
+                aria-label={`${s.time}: ${s.title}, ${s.place}`}
+              >
+                <span class="tile-art">
+                  <ScheduleScene kind={i} />
+                </span>
+                <span class="tile-dot" aria-hidden="true"></span>
+              </a>
+            ))}
+          </div>
+        </div>
+        <div class="map-footer">
+          <span class="map-current">9 am / Doors open</span>
+          <span class="map-instruction">Scroll to explore ↓</span>
+        </div>
+        <div class="day-progress" aria-hidden="true">
+          <span></span>
+        </div>
+      </div>
+      <ol class="story-track">
+        {sessions.map((s, i) => (
+          <li
+            id={`schedule-event-${i}`}
+            class="story-stop"
+            data-stop={i}
+            data-pattern={
+              [
+                "scan",
+                "bayer",
+                "radiate",
+                "reverse",
+                "rise",
+                "diagonal",
+                "fall",
+              ][i]
+            }
+            tabindex="-1"
+          >
+            <span class="track-node" aria-hidden="true"></span>
+            <div class="story-copy">
+              <span class="stop-time">{s.time}</span>
+              <span class="stop-type mono">
+                {s.type} / {s.place}
+              </span>
+              <h3>{s.title}</h3>
+              <p>{s.detail}</p>
+              <a
+                class="next-stop"
+                href={i < 6 ? `#schedule-event-${i + 1}` : "#play"}
+              >
+                {i < 6 ? "Next stop ↓" : "Keep playing ↓"}
+              </a>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+  <span id="schedule-status" class="sr-only" role="status"></span>
+</section>
+<script>
+  import "../scripts/scroll-schedule";
+</script>
+<style>
+  .scroll-schedule {
+    background: var(--color-surface);
+    padding: 90px 0 0;
+    border-block: 1px solid var(--rule);
+  }
+  .schedule-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 32px;
+    margin-bottom: 58px;
+  }
+  .schedule-intro .mono {
+    color: var(--green);
+  }
+  .schedule-intro h2 {
+    margin-top: 24px;
+    font-size: clamp(60px, 6vw, 90px);
+  }
+  .intro-copy {
+    padding-bottom: 8px;
+  }
+  .intro-copy p {
+    font-size: 14px;
+  }
+  .intro-copy .mono {
+    margin-top: 22px;
+    font-size: 10px;
+  }
+  .schedule-journey {
+    display: grid;
+    grid-template-columns: minmax(0, 2.25fr) minmax(250px, 1fr);
+    gap: 48px;
+    align-items: start;
+  }
+  .map-sticky {
+    position: sticky;
+    top: 16vh;
+    margin-bottom: 18vh;
+  }
+  .map-heading,
+  .map-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    padding: 16px 0;
+  }
+  .map-heading {
+    font-size: 13px;
+  }
+  .motion-toggle {
+    border: 0;
+    padding: 7px 0 7px 12px;
+    background: transparent;
+    font-size: 10px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .day-map {
+    position: relative;
+    isolation: isolate;
+    border: 1px solid var(--color-border-strong);
+    background: var(--cream);
+    overflow: hidden;
+  }
+  .map-landscape {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+  .calendar-drawing {
+    position: absolute;
+    left: 0;
+    top: 43px;
+    width: 100%;
+    height: calc(100% - 43px);
+    pointer-events: none;
+  }
+  .calendar-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-rows: 43px repeat(4, 100px);
+  }
+  .time-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--color-surface) 91%, transparent);
+    border-bottom: 1px solid var(--color-border-strong);
+    font-size: 10px;
+  }
+  .time-label {
+    border-left: 1px solid var(--color-border);
+  }
+  .time-label:hover {
+    background: var(--yellow);
+  }
+  .map-cell {
+    border-left: 1px solid
+      color-mix(in srgb, var(--color-heading) 19%, transparent);
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-heading) 19%, transparent);
+  }
+  .event-tile {
+    position: relative;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    overflow: hidden;
+    transition:
+      opacity 0.5s,
+      transform 0.6s,
+      filter 0.5s;
+    z-index: 1;
+  }
+  .tile-art {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    background: var(--tile-color);
+    border: 1px solid var(--color-border-strong);
+  }
+  .tile-dot {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    right: 5px;
+    top: 5px;
+    background: var(--green);
+    border: 1px solid var(--cream);
+    opacity: 0;
+  }
+  .enhanced .event-tile:not(.revealed) {
+    opacity: 0;
+    filter: grayscale(1);
+  }
+  .story-copy :is(.stop-time, .stop-type, h3, p) {
+    position: relative;
+  }
+  /* Copy is invisible until its own reveal begins, so the words never read
+     ahead of the animation. The reveal canvas is a child, so gating each
+     element — not the whole block — keeps the stagger honest. */
+  .enhanced .story-copy :is(.stop-time, .stop-type, h3, p):not(.shown) {
+    opacity: 0;
+  }
+  .event-tile.active {
+    outline: 3px solid var(--green);
+    outline-offset: -3px;
+    z-index: 2;
+  }
+  .event-tile.active .tile-dot {
+    opacity: 1;
+  }
+  .event-tile:focus-visible {
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  .event-tile:hover {
+    filter: brightness(1.06);
+  }
+  .map-current {
+    color: var(--green);
+  }
+  .map-instruction {
+    font-size: 10px;
+  }
+  .day-progress {
+    height: 3px;
+    background: var(--color-border);
+  }
+  .day-progress span {
+    display: block;
+    width: var(--day-progress, 0%);
+    height: 100%;
+    background: var(--green);
+    transition: width 0.2s linear;
+  }
+  .story-track {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 max(60svh, 360px) 26px;
+  }
+  .story-track::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-border);
+  }
+  .story-stop {
+    min-height: 65vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    scroll-margin-top: 30vh;
+  }
+  .track-node {
+    position: absolute;
+    left: -31px;
+    top: 50%;
+    width: 11px;
+    height: 11px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-strong);
+    transform: rotate(45deg);
+  }
+  .active .track-node {
+    background: var(--green);
+    box-shadow: 0 0 0 5px var(--color-surface);
+  }
+  .story-copy {
+    padding-block: 32px;
+    transition:
+      opacity 0.5s,
+      transform 0.5s;
+  }
+  .enhanced .story-stop:not(.active) .story-copy {
+    opacity: 0.3;
+    transform: none;
+  }
+  .stop-time {
+    display: block;
+    font-family: var(--display);
+    font-size: 65px;
+    line-height: 1;
+    color: var(--green);
+  }
+  .stop-type {
+    display: block;
+    font-size: 9px;
+    margin: 20px 0 15px;
+  }
+  .story-copy h3 {
+    position: relative;
+    color: var(--color-heading);
+    font-family: var(--display);
+    font-size: 36px;
+    line-height: 1.04;
+    margin-bottom: 18px;
+  }
+  .story-copy p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .next-stop {
+    display: inline-block;
+    font-size: 10px;
+    margin-top: 22px;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+  @media (min-width: 1500px) {
+    .calendar-grid {
+      grid-template-rows: 43px repeat(4, 120px);
+    }
+  }
+  @media (max-width: 1000px) {
+    .calendar-drawing {
+      left: 0;
+      top: 36px;
+      width: 100%;
+      height: calc(100% - 36px);
+    }
+    .schedule-journey {
+      gap: 26px;
+      grid-template-columns: minmax(0, 1.9fr) minmax(210px, 1fr);
+    }
+    .calendar-grid {
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      grid-template-rows: 36px repeat(4, 85px);
+    }
+    .event-tile {
+      margin: 0;
+    }
+  }
+  @media (max-width: 760px) {
+    .calendar-drawing {
+      left: 0;
+      top: 30px;
+      width: 100%;
+      height: calc(100% - 30px);
+    }
+    .scroll-schedule {
+      padding-top: 60px;
+    }
+    .schedule-intro {
+      display: block;
+      margin-bottom: 22px;
+    }
+    .intro-copy {
+      margin-top: 24px;
+    }
+    .schedule-journey {
+      display: block;
+    }
+    .map-sticky {
+      top: 0;
+      z-index: 5;
+      background: var(--color-surface);
+      margin-bottom: 0;
+      padding-bottom: 6px;
+    }
+    .map-heading,
+    .map-footer {
+      padding: 10px 0;
+      font-size: 10px;
+    }
+    .calendar-grid {
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      grid-template-rows: 30px repeat(4, 48px);
+    }
+    .time-label {
+      font-size: 8px;
+    }
+    .tile-art {
+      max-width: none;
+    }
+    .story-track {
+      margin-left: 8px;
+      padding-left: 28px;
+    }
+    .story-stop {
+      min-height: 65vh;
+      scroll-margin-top: 330px;
+    }
+    .story-copy {
+      max-width: 380px;
+    }
+    .stop-time {
+      font-size: 54px;
+    }
+    .story-copy h3 {
+      position: relative;
+      color: var(--color-heading);
+      font-size: 34px;
+    }
+    .map-instruction {
+      font-size: 8px;
+    }
+  }
+  @media (max-width: 760px) and (max-height: 620px) {
+    .map-sticky {
+      position: relative;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .calendar-drawing * {
+      animation: none;
+    }
+    .enhanced .event-tile:not(.revealed),
+    .enhanced .story-stop:not(.active) .story-copy {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+    .enhanced .story-copy :is(.stop-time, .stop-type, h3, p):not(.shown) {
+      opacity: 0;
+    }
+    .enhanced .event-tile:not(.revealed) {
+      opacity: 0;
+      filter: grayscale(1);
+    }
+    .story-copy :is(.stop-time, .stop-type, h3, p) {
+      position: relative;
+    }
+    .event-tile.active {
+      transform: none;
+    }
+  }
+</style>

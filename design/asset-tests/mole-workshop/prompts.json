@@ -1,0 +1,11 @@
+{
+  "id": "mole-workshop",
+  "time": "11 am",
+  "title": "Think in tiny squares.",
+  "type": "Pixel workshop",
+  "scene": "A DIFFERENT MOLE: fluffy warm ivory/cream fur, soft pink long mole nose, tiny dark eyes, NO goggles or spectacles, sage-green paint-stained artist apron and a small olive beret. It holds a brush beside a tabletop easel showing a simple yellow-centered white daisy. Cozy art workshop, wooden table and two paint pots. Large waist-up portrait. Must read as a mole, no visible large mouse ears.",
+  "motion": "The cream-furred mole in green apron gently dabs its brush against the daisy canvas then returns, subtle breathing. Preserve ivory fur, beret, apron, small eyes and pink nose. No goggles appear. Background and easel remain still.",
+  "prompt": "Edit this existing pixel-art scene for a coordinated calendar series. KEEP the main character(s) or object, clothing, face, anatomy, pixel-art style and featured activity, but COMPLETELY REPLACE the background and room/set design. NEW SETTING: A glass-roof greenhouse art studio: airy pale sky blue triangular roof panes, climbing ivy, fern silhouettes and terracotta plant pots. Bright diffuse mint-green daylight. NO bakery shelves, no village window, no repeating cream plaster wall. Adapt lighting on subject to belong in new environment. Main subject stays large, simple, legible at 48px; crisp chunky pixels, selective dark outlines, charming Kiki's Delivery Service inspired atmosphere. Square, no text, no border. Background variation is essential; this must no longer resemble the previous coffee-shop scene.",
+  "background": "A glass-roof greenhouse art studio: airy pale sky blue triangular roof panes, climbing ivy, fern silhouettes and terracotta plant pots. Bright diffuse mint-green daylight. NO bakery shelves, no village window, no repeating cream plaster wall.",
+  "source": "/Users/kevinrufino/.codex/generated_images/01a0c28c-e323-7b73-be9b-bb902ed6c13e/exec-3d794c1a-3103-4b62-87e6-380dfe99bdcb.png"
+}

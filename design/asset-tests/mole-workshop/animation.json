@@ -1,0 +1,10 @@
+{
+  "name": "mole-workshop",
+  "frameWidth": 128,
+  "frameHeight": 128,
+  "frameCount": 8,
+  "frameDurationMs": 180,
+  "loop": true,
+  "spriteSheet": "spritesheet.png",
+  "poster": "frame-00.png"
+}

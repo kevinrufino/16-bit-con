@@ -1,0 +1,11 @@
+{
+  "id": "mole-keynote",
+  "time": "10 am",
+  "title": "The future has a past.",
+  "type": "Keynote",
+  "scene": "OBJECT STILL LIFE, NO living character: a chunky cream vintage CRT computer and keyboard on a wooden desk. The green monochrome monitor shows one tiny simple mole sprite silhouette, a prompt chevron and a few abstract terminal bars (no readable text). A mole-paw-shaped wooden coaster and little potted daisy beside it. Cozy wood study with morning light. CRT dominates 75% of square composition.",
+  "motion": "Fixed camera, stationary study and computer. The tiny mole sprite on the green screen gently takes two steps in place, terminal cursor blinks, small green power indicator pulses. All movement confined to the screen and light.",
+  "prompt": "Edit this existing pixel-art scene for a coordinated calendar series. KEEP the main character(s) or object, clothing, face, anatomy, pixel-art style and featured activity, but COMPLETELY REPLACE the background and room/set design. NEW SETTING: An old university lecture hall: burgundy velvet curtains, a dark chalkboard with one small simple mole diagram, rows of wooden seats receding into shadow. Computer sits on a lectern foreground. Cool slate and burgundy with warm amber spotlight. NO bakery, no flowers, no town window, no bookcase. Adapt lighting on subject to belong in new environment. Main subject stays large, simple, legible at 48px; crisp chunky pixels, selective dark outlines, charming Kiki's Delivery Service inspired atmosphere. Square, no text, no border. Background variation is essential; this must no longer resemble the previous coffee-shop scene.",
+  "background": "An old university lecture hall: burgundy velvet curtains, a dark chalkboard with one small simple mole diagram, rows of wooden seats receding into shadow. Computer sits on a lectern foreground. Cool slate and burgundy with warm amber spotlight. NO bakery, no flowers, no town window, no bookcase.",
+  "source": "/Users/kevinrufino/.codex/generated_images/01a0c28c-e323-7b73-be9b-bb902ed6c13e/exec-9eb2a5ae-ef30-4203-8d2a-821cf85d15b0.png"
+}

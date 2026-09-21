@@ -1,0 +1,34 @@
+---
+const { kind = 0 } = Astro.props;
+const scenes = [
+  "mole-coffee",
+  "mole-keynote",
+  "mole-workshop",
+  "mole-arcade",
+  "mole-panel",
+  "mole-demo",
+  "mole-music",
+];
+const scene = scenes[kind] ?? scenes[0];
+---
+
+<video
+  class="schedule-video"
+  src={`/schedule/${scene}.mp4`}
+  poster={`/schedule/${scene}-poster.png`}
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto"
+  aria-hidden="true"
+></video>
+<style>
+  video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+  }
+</style>

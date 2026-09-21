@@ -1,0 +1,16 @@
+---
+import Layout from "../../archive/convention-hero/Layout.astro";
+import ConventionHero from "../../archive/convention-hero/ConventionHero.astro";
+---
+<Layout title="Pixel convention hero — 16-Bit Con drafts">
+  <header class="archive-banner">
+    <span>ARCHIVED / INTERACTIVE CONVENTION HERO</span>
+    <a href="/drafts">↖ All drafts</a>
+    <a href="/">Current site ↗</a>
+  </header>
+  <main id="main"><ConventionHero /></main>
+</Layout>
+<style>
+  .archive-banner { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; padding: 16px 24px; background: #001400; color: #fffaeb; font: 12px/1.5 monospace; }
+  .archive-banner a { color: #ffd11b; text-decoration: underline; text-underline-offset: 4px; }
+</style>

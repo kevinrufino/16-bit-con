@@ -1,0 +1,56 @@
+@font-face {
+  font-family: "Redaction";
+  src: url("/fonts/Redaction-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Redaction 35";
+  src: url("/fonts/Redaction-35-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Redaction 50";
+  src: url("/fonts/Redaction-50-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Redaction 70";
+  src: url("/fonts/Redaction-70-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+[data-font-word] {
+  position: relative;
+}
+[data-font-word] .font-frame {
+  position: absolute;
+  inset: 0;
+  white-space: nowrap;
+  visibility: hidden;
+  transform-origin: left center;
+  font-size: 0.82em;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+[data-font-word].font-running .font-base {
+  visibility: hidden;
+}
+[data-font-word].font-running .font-frame {
+  visibility: visible;
+}
+.font-redaction {
+  font-family: var(--font-redaction);
+}
+.font-redaction35 {
+  font-family: var(--font-redaction35);
+}
+.font-redaction50 {
+  font-family: var(--font-redaction50);
+}
+.font-redaction70 {
+  font-family: var(--font-redaction70);
+}

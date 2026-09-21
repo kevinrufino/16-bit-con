@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>16 Bit Con — Mole character lab</title>
+    <style>
+      :root {
+        font-family: "Courier New", monospace;
+        color: #142953;
+        background: #fff2cd;
+        font-synthesis: none;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 22px 32px;
+        border-bottom: 3px solid #142953;
+        background: #f4f8fc;
+      }
+      header strong {
+        font-size: 24px;
+        letter-spacing: -1.5px;
+      }
+      header span {
+        font-size: 13px;
+      }
+      main {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 330px;
+        min-height: calc(100svh - 76px);
+      }
+      #stage {
+        position: sticky;
+        top: 0;
+        height: calc(100svh - 76px);
+        min-height: 540px;
+        overflow: hidden;
+        background: #fff2cd;
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        image-rendering: pixelated;
+        touch-action: none;
+      }
+      .stage-title {
+        position: absolute;
+        left: 32px;
+        top: 24px;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .stage-title h1 {
+        margin: 0;
+        font-size: clamp(28px, 4vw, 58px);
+        letter-spacing: -3px;
+      }
+      .stage-title p {
+        max-width: 350px;
+        line-height: 1.5;
+      }
+      .hint {
+        position: absolute;
+        bottom: 24px;
+        left: 32px;
+        font-size: 12px;
+        pointer-events: none;
+      }
+      aside {
+        background: #f4f8fc;
+        padding: 28px 24px;
+        border-left: 3px solid #142953;
+      }
+      h2 {
+        font-size: 17px;
+        margin: 0 0 14px;
+      }
+      section {
+        margin-bottom: 28px;
+      }
+      .characters {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      button,
+      select,
+      .download {
+        font: inherit;
+        font-size: 13px;
+        color: inherit;
+        border: 2px solid #142953;
+        background: white;
+        padding: 11px;
+        cursor: pointer;
+        border-radius: 0;
+      }
+      button[aria-pressed="true"] {
+        background: #142953;
+        color: #fff;
+        box-shadow: 3px 3px 0 #00bdd9;
+      }
+      button:focus-visible,
+      select:focus-visible,
+      a:focus-visible,
+      input:focus-visible {
+        outline: 3px solid #b4317c;
+        outline-offset: 3px;
+      }
+      select {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      label {
+        display: block;
+        font-size: 13px;
+        margin: 15px 0 8px;
+      }
+      input[type="range"] {
+        width: 100%;
+        accent-color: #142953;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .row button {
+        flex: 1;
+      }
+      input[type="checkbox"] {
+        accent-color: #142953;
+      }
+      .download {
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        background: #ffd16a;
+        box-shadow: 4px 4px 0 #142953;
+        margin: 22px 4px 14px 0;
+      }
+      #status {
+        font-size: 11px;
+        line-height: 1.6;
+        min-height: 36px;
+      }
+      small {
+        font-size: 11px;
+        line-height: 1.6;
+        display: block;
+      }
+      .toggles label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      @media (max-width: 760px) {
+        header {
+          padding: 16px;
+        }
+        header span {
+          max-width: 105px;
+          text-align: right;
+          font-size: 11px;
+        }
+        main {
+          display: block;
+        }
+        #stage {
+          position: relative;
+          height: 58svh;
+          min-height: 420px;
+        }
+        aside {
+          border-left: 0;
+          border-top: 3px solid #142953;
+          padding: 24px;
+        }
+        .stage-title {
+          left: 20px;
+          top: 16px;
+        }
+        .stage-title h1 {
+          font-size: 34px;
+        }
+        .stage-title p {
+          font-size: 12px;
+          max-width: 260px;
+        }
+        .characters {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .hint {
+          left: 20px;
+          font-size: 10px;
+        }
+      }
+      .reference-frame {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        pointer-events: none;
+      }
+      .comparing .reference-frame {
+        display: block;
+      }
+      .reference-frame img {
+        position: absolute;
+        height: 65.4%;
+        width: 100%;
+        object-fit: contain;
+        bottom: 12%;
+        image-rendering: pixelated;
+      }
+      .reference-frame span {
+        position: absolute;
+        bottom: 5%;
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+      }
+      .comparing .stage-title p {
+        display: none;
+      }
+      .comparing .stage-title h1 {
+        font-size: 24px;
+        letter-spacing: -1px;
+      }
+      .comparing .hint {
+        max-width: 45%;
+        font-size: 10px;
+      }
+    </style>
+    <script type="importmap">
+      { "imports": { "three": "./vendor/three.module.js" } }
+    </script>
+  </head>
+  <body>
+    <header>
+      <strong>16 bit con<span style="color: #be3569"> ✦</span></strong
+      ><span>A celebration of pixels.</span>
+    </header>
+    <main>
+      <div id="stage" aria-label="Interactive 3D mole preview">
+        <div class="stage-title">
+          <h1>Meet the locals.</h1>
+          <p>
+            Small paws. Big con energy.<br />Pick a mole and give them something
+            to do.
+          </p>
+        </div>
+        <div class="hint">3D model · Drag to orbit</div>
+        <div class="reference-frame">
+          <img
+            id="reference-image"
+            src="./references/classic.png"
+            alt="Original supplied pixel-art mole reference"
+          /><span>Original reference</span>
+        </div>
+      </div>
+      <aside>
+        <section>
+          <h2>Choose your character</h2>
+          <div class="characters" id="characters"></div>
+          <label for="eyewear">Eyewear</label
+          ><select id="eyewear">
+            <option value="goggles">Strapped goggles (default)</option>
+            <option value="square">Square glasses</option>
+            <option value="round">Round spectacles</option>
+            <option value="visor">Arcade visor</option>
+            <option value="bare">No eyewear</option>
+          </select>
+        </section>
+        <section>
+          <h2>Make a move</h2>
+          <label for="animation">Animation</label
+          ><select id="animation"></select>
+          <div class="row">
+            <button id="pause" aria-pressed="false">Pause</button
+            ><button id="reset">Reset view</button>
+          </div>
+          <label for="speed"
+            >Playback <output id="speed-value">1×</output></label
+          ><input
+            id="speed"
+            type="range"
+            min="0.25"
+            max="2"
+            step="0.25"
+            value="1"
+          />
+        </section>
+        <section>
+          <h2>Find the look</h2>
+          <label for="view">Camera</label
+          ><select id="view">
+            <option value="sprite">Sprite view</option>
+            <option value="stage">3D stage</option>
+          </select>
+          <label
+            ><input id="compare" type="checkbox" checked /> Compare with original</label
+          >
+          <label for="pixels"
+            >Pixel size <output id="pixel-value">6 px</output></label
+          ><input
+            id="pixels"
+            type="range"
+            min="1"
+            max="8"
+            step="1"
+            value="6"
+          /><label for="outline"
+            >Outline strength <output id="outline-value">100%</output></label
+          ><input
+            id="outline"
+            type="range"
+            min="0"
+            max="1"
+            step="0.1"
+            value="1"
+          />
+          <div class="toggles">
+            <label
+              ><input id="toon" type="checkbox" checked /> Toon shading</label
+            ><label><input id="rotate" type="checkbox" /> Turntable</label>
+          </div>
+        </section>
+        <a class="download" id="download" href="classic.glb" download
+          >Download classic.glb</a
+        >
+        <p id="status" role="status">Loading characters…</p>
+        <small
+          >Each GLB includes the shared skeleton and all 13 animation clips. The
+          Blender source retains editable parts.</small
+        >
+      </aside>
+    </main>
+    <script type="module" src="./viewer.js?v=3"></script>
+  </body>
+</html>

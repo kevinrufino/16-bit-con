@@ -1,0 +1,45 @@
+---
+import "../styles/global.css";
+import "../styles/redaction.css";
+import { token } from "../design/tokens";
+import SiteLoader from "../components/SiteLoader.astro";
+const {
+  title = "16-Bit Con — Small pixels. Big ideas.",
+  description = "The retro gaming convention for people who never stopped playing. October 3–5, 2026. Javits Center, New York. Find Vega at Booth 630.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content={token("color-surface")} />
+    <title>{title}</title>
+    <link rel="icon" href="/images/vega-logo.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="/fonts/PPMondwest-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {import.meta.env.DEV && (
+      <script
+        is:inline
+        src="https://mcp.figma.com/mcp/html-to-design/capture.js"
+        async
+      ></script>
+    )}
+  </head>
+  <body>
+    <SiteLoader />
+    <a class="skip" href="#main">
+      Skip to content
+    </a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "id": "mole-panel",
+  "time": "2 pm",
+  "title": "Built to last. Made to play.",
+  "type": "Makers panel",
+  "scene": "Two friendly round brown moles at a little wooden discussion table in a cozy convention room, the main mole wears bright cyan rectangular goggles and the other wears small round amber spectacles. One small cream microphone on the table. Both faces large and readable, warm sage curtain and golden window backdrop, gentle conversational mood.",
+  "motion": "The cyan-goggled mole makes a tiny talking paw gesture while the other mole nods gently, then both settle back. Keep mouths subtle, microphone and background still. No speech bubbles or text.",
+  "prompt": "Edit this existing pixel-art scene for a coordinated calendar series. KEEP the main character(s) or object, clothing, face, anatomy, pixel-art style and featured activity, but COMPLETELY REPLACE the background and room/set design. NEW SETTING: An outdoor garden stage: mossy low stone wall, leafy tree canopy, paper bunting between branches, blue open sky and sun-dappled light. Their table is a rustic outdoor picnic table. NO enclosed room, windows, bakery, bookshelves or curtains. Adapt lighting on subject to belong in new environment. Main subject stays large, simple, legible at 48px; crisp chunky pixels, selective dark outlines, charming Kiki's Delivery Service inspired atmosphere. Square, no text, no border. Background variation is essential; this must no longer resemble the previous coffee-shop scene.",
+  "background": "An outdoor garden stage: mossy low stone wall, leafy tree canopy, paper bunting between branches, blue open sky and sun-dappled light. Their table is a rustic outdoor picnic table. NO enclosed room, windows, bakery, bookshelves or curtains.",
+  "source": "/Users/kevinrufino/.codex/generated_images/01a0c28c-e323-7b73-be9b-bb902ed6c13e/exec-a636f9a3-376d-4541-8216-063def7aa930.png"
+}

@@ -1,0 +1,277 @@
+<section class="con-hero" aria-labelledby="event-name">
+  <div class="wrap con-layout">
+    <div class="con-copy">
+      <p class="con-kicker">A celebration of pixels.</p>
+      <h1 id="event-name">
+        16-Bit
+        <br />
+        Con<span aria-hidden="true">✳</span>
+      </h1>
+      <p class="con-description">
+        The retro gaming convention for people who never stopped playing.
+      </p>
+      <p class="con-date">
+        Jarvis Center, NY
+        <br />
+        October 24, 2026
+      </p>
+      <div class="con-caption">
+        <span>Pick up a little personality.</span>
+        <button
+          id="con-motion"
+          type="button"
+          aria-pressed="false"
+          aria-label="Pause queue motion"
+          disabled
+        >
+          Ⅱ Pause
+        </button>
+      </div>
+      <p id="con-response" class="con-sr-only" role="status"></p>
+    </div>
+  </div>
+  <div class="con-stage">
+    <div
+      id="con-world"
+      class="con-world"
+      tabindex="0"
+      role="group"
+      aria-label="Interactive mole queue. Click a mole to celebrate. Drag a mole to pick it up. Keyboard: arrows select, Enter picks up or releases, arrows move the held mole, Space nudges, Escape releases."
+    >
+      <img
+        id="con-fallback"
+        src="/mole-kit/lineup.png"
+        alt="The colorful 16-Bit Con mole crowd"
+        width="1800"
+        height="760"
+      />
+      <div id="con-bubbles" aria-hidden="true"></div>
+      <div id="con-tooltip" hidden aria-hidden="true"></div>
+      <span id="con-world-note" class="con-sr-only">
+        The line is forming…
+      </span>
+    </div>
+  </div>
+</section>
+<script is:inline type="importmap">
+  { "imports": { "three": "/mole-kit/vendor/three.module.js" } }
+</script>
+<script
+  is:inline
+  type="module"
+  src="/drafts/landscape-hero/convention-header.js"
+></script>
+<style>
+  .con-hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--rule);
+    background: #8dcaff url("/images/hero-landscape.png") center bottom / cover
+      no-repeat;
+  }
+  .con-layout {
+    min-height: min(760px, 90svh);
+    display: flex;
+    align-items: center;
+  }
+  .con-copy {
+    position: relative;
+    z-index: 2;
+    width: 36%;
+    padding-block: 60px;
+    text-align: left;
+  }
+  .con-kicker {
+    margin: 0 0 22px;
+    font-size: 13px;
+  }
+  h1 {
+    font: clamp(86px, 10vw, 150px)/0.86 var(--display);
+    letter-spacing: -0.055em;
+    color: var(--green);
+    margin: 0 0 28px;
+  }
+  h1 span {
+    font: 0.28em var(--mono);
+    vertical-align: middle;
+    margin-left: 0.18em;
+  }
+  .con-description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 0 24px;
+  }
+  .con-date {
+    font: 11px/1.6 var(--mono);
+    margin: 0 0 26px;
+  }
+  .con-copy .button {
+    min-height: 48px;
+    font-size: 13px;
+  }
+  .con-caption {
+    margin-top: 28px;
+    font: 10px/1.5 var(--mono);
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .con-caption button {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    padding: 6px 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .con-stage {
+    position: absolute;
+    left: 40%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .con-world {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    isolation: isolate;
+    touch-action: none;
+    outline-offset: -3px;
+  }
+  .con-world :global(canvas) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    touch-action: none;
+  }
+  #con-fallback {
+    position: absolute;
+    inset: 12% 0;
+    width: 100%;
+    height: 76%;
+    object-fit: contain;
+    image-rendering: pixelated;
+  }
+  #con-fallback[hidden] {
+    display: none;
+  }
+  .con-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  #con-bubbles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  #con-bubbles :global(.mole-bubble) {
+    position: absolute;
+    box-sizing: border-box;
+    width: 164px;
+    padding: 9px 11px;
+    background: #fffdf1;
+    border: 2px solid var(--green);
+    box-shadow: 3px 3px 0 #ffd11b;
+    color: var(--green);
+    font: 11px/1.4 var(--mono);
+    transform: translate(-50%, -100%);
+  }
+  #con-bubbles :global(.mole-bubble::after) {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: var(--tail, 50%);
+    width: 9px;
+    height: 9px;
+    background: #fffdf1;
+    border-right: 2px solid var(--green);
+    border-bottom: 2px solid var(--green);
+    transform: rotate(45deg);
+  }
+  #con-bubbles :global(.mole-bubble.thought) {
+    background: #eff1dd;
+    border-style: dashed;
+    box-shadow: 3px 3px 0 #c6d1ad;
+    font-style: italic;
+  }
+  #con-bubbles :global(.mole-bubble.thought::after) {
+    width: 5px;
+    height: 5px;
+    border: 1px solid var(--green);
+    background: #eff1dd;
+    transform: none;
+    box-shadow:
+      5px 6px 0 -1px #eff1dd,
+      5px 6px 0 0 var(--green);
+  }
+  @media (max-width: 600px) {
+    #con-bubbles :global(.mole-bubble) {
+      width: 138px;
+      font-size: 10px;
+    }
+  }
+  #con-tooltip {
+    position: absolute;
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+    background: var(--green);
+    color: var(--cream);
+    font: 11px var(--mono);
+    padding: 8px 11px;
+    box-shadow: 3px 3px #ffd11b;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1000px) {
+    .con-copy {
+      width: 39%;
+    }
+    h1 {
+      font-size: clamp(72px, 12vw, 110px);
+    }
+    .con-description {
+      font-size: 14px;
+    }
+    .con-layout {
+      min-height: 650px;
+    }
+  }
+  @media (max-width: 600px) {
+    .con-layout {
+      min-height: 760px;
+      align-items: flex-start;
+    }
+    .con-copy {
+      width: 100%;
+      padding-block: 36px;
+    }
+    h1 {
+      font-size: 82px;
+    }
+    .con-description {
+      margin-bottom: 16px;
+    }
+    .con-date {
+      margin-bottom: 18px;
+    }
+    .con-caption {
+      margin-top: 18px;
+    }
+    .con-stage {
+      top: 430px;
+      height: 330px;
+    }
+  }
+</style>

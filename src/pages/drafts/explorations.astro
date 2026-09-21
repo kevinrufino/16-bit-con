@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import explorations from "../../design/explorations.json";
+---
+
+<Layout title="Raw explorations — 16-Bit Con">
+  <main id="main" class="wrap exploration-page">
+    <a href="/drafts">← All drafts</a>
+    <h1>Pixels in progress.</h1>
+    <p>
+      Every visual study from the local asset explorations, including the frames
+      between ideas. These are process artifacts; the main site now uses a
+      consistent brand illustration system.
+    </p>
+    <p>
+      <a href="/drafts/explorations/conveyor-exploration.md">
+        Read the conveyor design notes ↗
+      </a>
+    </p>
+    {explorations.map((group) => (
+      <section>
+        <h2>{group.name}</h2>
+        <div class="exploration-grid">
+          {group.images.map((image) => (
+            <figure>
+              <a href={image.src}>
+                <img
+                  src={image.src}
+                  alt={`${group.name}: ${image.name}`}
+                  loading="lazy"
+                  width="320"
+                  height="240"
+                />
+              </a>
+              <figcaption>{image.name}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    ))}
+  </main>
+</Layout>
+<style>
+  .exploration-page {
+    padding-block: var(--space-12);
+  }
+  h1 {
+    font: var(--text-section)/1 var(--font-display);
+    color: var(--color-heading);
+    margin-block: var(--space-8);
+  }
+  p {
+    max-width: 65ch;
+    margin-block: var(--space-4);
+  }
+  section {
+    margin-top: var(--space-20);
+  }
+  section h2 {
+    text-transform: capitalize;
+    margin-bottom: var(--space-8);
+  }
+  .exploration-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--space-6);
+  }
+  figure {
+    margin: 0;
+    background: var(--color-surface-subtle);
+    padding: var(--space-4);
+  }
+  img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    image-rendering: pixelated;
+  }
+  figcaption {
+    font: var(--text-xs) var(--font-mono);
+    margin-top: var(--space-4);
+  }
+  a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+</style>

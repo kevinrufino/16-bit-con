@@ -1,0 +1,128 @@
+---
+const { kind = "keynote" } = Astro.props;
+---
+
+<svg
+  class="session-art"
+  viewBox="0 0 320 320"
+  fill="none"
+  aria-hidden="true"
+  shape-rendering="crispEdges"
+>
+  <defs>
+    <pattern
+      id={`floor-${kind}`}
+      width="32"
+      height="32"
+      patternUnits="userSpaceOnUse"
+    >
+      <path d="M32 0H0V32" stroke="currentColor" opacity=".12" />
+    </pattern>
+  </defs>
+  <rect width="320" height="320" fill={`url(#floor-${kind})`} />
+  {kind === "keynote" && (
+    <>
+      <path d="M72 60H256V240H72Z" fill="var(--color-dark)" />
+      <path
+        d="M56 44H240V220H56Z"
+        fill="var(--color-surface)"
+        stroke="var(--color-text)"
+        stroke-width="8"
+      />
+      <path d="M80 68H216V164H80Z" fill="var(--color-heading)" />
+      <path
+        class="screen-signal"
+        d="M96 132V116H112V100H128V84H144V100H160V116H176V132H192"
+        stroke="var(--color-accent)"
+        stroke-width="8"
+      />
+      <path
+        d="M80 188H160M184 188H216M80 204H128"
+        stroke="var(--color-text)"
+        stroke-width="8"
+      />
+      <path
+        d="M40 252H248V276H40Z"
+        fill="var(--color-surface)"
+        stroke="var(--color-text)"
+        stroke-width="8"
+      />
+      <path
+        d="M56 260H72M88 260H104M120 260H136M152 260H168M184 260H200M216 260H232"
+        stroke="var(--color-text)"
+        stroke-width="4"
+      />
+    </>
+  )}
+  {kind === "pixels" && (
+    <>
+      <path d="M72 56H272V256H72Z" fill="var(--color-dark)" />
+      <path
+        d="M48 40H248V240H48Z"
+        fill="var(--color-surface)"
+        stroke="var(--color-text)"
+        stroke-width="8"
+      />
+      <path
+        d="M112 64H168V88H192V144H168V168H112V144H88V88H112Z"
+        fill="var(--color-accent)"
+      />
+      <path d="M128 96H152V120H128Z" fill="var(--color-text)" />
+      <path
+        d="M136 168V216M136 192H168V176M136 208H112V192"
+        stroke="var(--color-heading)"
+        stroke-width="8"
+      />
+      <path
+        d="M208 248L248 208L264 224L224 264H208Z"
+        fill="var(--color-accent)"
+        stroke="var(--color-text)"
+        stroke-width="8"
+      />
+      <path
+        d="M48 264H72M88 264H112M128 264H152"
+        stroke="var(--color-surface)"
+        stroke-width="16"
+      />
+    </>
+  )}
+  {kind === "party" && (
+    <>
+      <path d="M48 76H288V268H48Z" fill="var(--color-heading)" />
+      <path
+        d="M32 60H272V252H32Z"
+        fill="var(--color-surface)"
+        stroke="var(--color-text)"
+        stroke-width="8"
+      />
+      <path
+        d="M64 84H184V100H200V116H216V196H200V212H184V228H64V212H48V116H64Z"
+        fill="var(--color-text)"
+      />
+      <path
+        d="M88 116H168V132H184V180H168V196H88V180H72V132H88Z"
+        fill="var(--color-heading)"
+      />
+      <path d="M112 140H144V172H112Z" fill="var(--color-accent)" />
+      <path
+        d="M240 84V172L208 204"
+        stroke="var(--color-text)"
+        stroke-width="8"
+      />
+      <path d="M232 220H248" stroke="var(--color-accent)" stroke-width="16" />
+      <path
+        d="M80 24V8M104 32L120 16M56 32L40 16"
+        stroke="var(--color-accent)"
+        stroke-width="8"
+      />
+    </>
+  )}
+</svg>
+<style>
+  .session-art {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: var(--color-text);
+  }
+</style>

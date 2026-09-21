@@ -1,0 +1,50 @@
+[
+  {
+    "file": "classic.glb",
+    "framesTested": 37,
+    "minPawCenterDistance": 0.36950324606332074,
+    "maxPawCenterDistance": 0.9771524797807214,
+    "minimumForward": 0.9091468839971872,
+    "result": "PASS"
+  },
+  {
+    "file": "propeller.glb",
+    "framesTested": 37,
+    "minPawCenterDistance": 0.36950324606332074,
+    "maxPawCenterDistance": 0.9771524797807214,
+    "minimumForward": 0.9091468839971872,
+    "result": "PASS"
+  },
+  {
+    "file": "superfan.glb",
+    "framesTested": 37,
+    "minPawCenterDistance": 0.36950324606332074,
+    "maxPawCenterDistance": 0.9771524797807214,
+    "minimumForward": 0.9091468839971872,
+    "result": "PASS"
+  },
+  {
+    "file": "crew.glb",
+    "framesTested": 37,
+    "minPawCenterDistance": 0.36950324606332074,
+    "maxPawCenterDistance": 0.9771524797807214,
+    "minimumForward": 0.9091468839971872,
+    "result": "PASS"
+  },
+  {
+    "file": "gamer.glb",
+    "framesTested": 37,
+    "minPawCenterDistance": 0.36950324606332074,
+    "maxPawCenterDistance": 0.9771524797807214,
+    "minimumForward": 0.9091468839971872,
+    "result": "PASS"
+  },
+  {
+    "file": "artist.glb",
+    "framesTested": 37,
+    "minPawCenterDistance": 0.36950324606332074,
+    "maxPawCenterDistance": 0.9771524797807214,
+    "minimumForward": 0.9091468839971872,
+    "result": "PASS"
+  }
+]

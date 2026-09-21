@@ -1,0 +1,127 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ConventionHero from "../../archive/guided-lineup/ConventionHero.astro";
+import PassStudio from "../../archive/guided-lineup/PassStudio.astro";
+import ScrollSchedule from "../../archive/guided-lineup/ScrollSchedule.astro";
+import Experience from "../../components/Experience.astro";
+import BoothCTA from "../../components/BoothCTA.astro";
+---
+
+<Layout title="Guided lineup exploration — 16-Bit Con">
+  <main id="main">
+    <div class="hero-curtain">
+      <header class="site-header wrap">
+        <a class="brand" href="/" aria-label="Vega, 16-Bit Con home">
+          <img src="/images/vega-logo.svg" alt="Vega" width="108" height="35" />
+          <span class="brand-divider"></span>
+          <span class="mono brand-event">PRESENTS 16-BIT CON</span>
+        </a>
+        <nav aria-label="Main navigation">
+          <a href="#about">The experience</a>
+          <a href="#schedule">The lineup</a>
+          <a href="#play">Pixel playground</a>
+        </nav>
+      </header>
+      <ConventionHero />
+    </div>
+    <div class="schedule-curtain">
+      <Experience />
+      <ScrollSchedule />
+    </div>
+    <div class="footer-curtain">
+      <canvas class="pass-aura" aria-hidden="true"></canvas>
+      <BoothCTA />
+      <PassStudio />
+      <footer class="wrap">
+        <a href="https://vega.io" aria-label="Visit Vega">
+          <img src="/images/vega-logo.svg" alt="Vega" width="96" height="32" />
+        </a>
+        <span>Never stopped playing.</span>
+        <a href="/drafts">Behind the pixels ↗</a>
+        <a href="/design-system">Design system ↗</a>
+        <span class="mono">A FICTIONAL EVENT. A REAL GOOD IDEA.</span>
+      </footer>
+    </div>
+  </main>
+  <dialog id="pass-dialog" aria-labelledby="pass-title">
+    <div class="ticket-modal-content">
+      <button class="close-dialog" aria-label="Close pass dialog" type="button">
+        ×
+      </button>
+      <span class="mono" id="modal-edition">
+        16-BIT CON / YOUR PASS
+      </span>
+      <h2 id="pass-title">Make it yours.</h2>
+      <p>
+        This is a fictional convention. Create a souvenir pass to keep the good
+        pixels going.
+      </p>
+      <form id="pass-form">
+        <label for="player-name">Your player name</label>
+        <input
+          id="player-name"
+          name="player"
+          autocomplete="nickname"
+          placeholder="Your name or alias"
+          maxlength="30"
+          required
+        />
+        <button class="button dark" type="submit">
+          Create my souvenir pass ↗
+        </button>
+      </form>
+      <div id="pass-result" hidden>
+        <p id="pass-message" role="status"></p>
+        <button id="download-pass" class="button dark" type="button">
+          Download your pass ↓
+        </button>
+      </div>
+    </div>
+  </dialog>
+</Layout>
+
+<script>
+  import "../../scripts/curtains";
+</script>
+<style is:global>
+  .hero-curtain {
+    position: sticky;
+    top: min(0px, calc(100svh - var(--panel-height, 100svh)));
+    z-index: 0;
+    min-height: 100svh;
+    background: var(--color-surface);
+  }
+  .schedule-curtain {
+    position: relative;
+    z-index: 2;
+    background: var(--color-surface);
+    box-shadow:
+      0 -12px 30px color-mix(in srgb, var(--color-text) 4.71%, transparent),
+      0 12px 30px color-mix(in srgb, var(--color-text) 4.71%, transparent);
+  }
+  .footer-curtain {
+    position: sticky;
+    bottom: min(0px, calc(100svh - var(--panel-height, 100svh)));
+    z-index: 1;
+    isolation: isolate;
+    min-height: 100svh;
+    background: var(--color-surface);
+  }
+  .footer-curtain > .pass-aura {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    image-rendering: pixelated;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-curtain,
+    .footer-curtain {
+      position: relative;
+      top: auto;
+      bottom: auto;
+    }
+  }
+</style>

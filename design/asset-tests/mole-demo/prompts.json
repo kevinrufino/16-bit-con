@@ -1,0 +1,11 @@
+{
+  "id": "mole-demo",
+  "time": "3 pm",
+  "title": "Show your strange little thing.",
+  "type": "Open demo",
+  "scene": "OBJECT STILL LIFE, NO living character: an adorable homemade MOLE-SHAPED ROBOT on a wooden inventor's workbench. Squat rounded brass and cream tin body, pointed conical pink metal snout, two tiny blue light-up eyes, broad little shovel paws, rivets and one stubby antenna. A small red push button on its back. A screwdriver and simple mole robot sketch on paper nearby. Warm honey afternoon workshop. Robot dominates 75% of image, clear cute mole silhouette.",
+  "motion": "The tiny mole-shaped robot's blue eyes blink, pink metal nose twitches once, one shovel paw gives a tiny wave and returns. Body stays planted, no walking. Background, tools and paper stay fixed.",
+  "prompt": "Edit this existing pixel-art scene for a coordinated calendar series. KEEP the main character(s) or object, clothing, face, anatomy, pixel-art style and featured activity, but COMPLETELY REPLACE the background and room/set design. NEW SETTING: A cluttered basement maker workshop: blue-gray stone arch walls, exposed copper pipes, suspended warm work lamp, tool pegboard, shelves of small spare gears and coils. Robot on a dark rough workbench. NO town window, plants, bakery or sunny cream wall. Adapt lighting on subject to belong in new environment. Main subject stays large, simple, legible at 48px; crisp chunky pixels, selective dark outlines, charming Kiki's Delivery Service inspired atmosphere. Square, no text, no border. Background variation is essential; this must no longer resemble the previous coffee-shop scene.",
+  "background": "A cluttered basement maker workshop: blue-gray stone arch walls, exposed copper pipes, suspended warm work lamp, tool pegboard, shelves of small spare gears and coils. Robot on a dark rough workbench. NO town window, plants, bakery or sunny cream wall.",
+  "source": "/Users/kevinrufino/.codex/generated_images/01a0c28c-e323-7b73-be9b-bb902ed6c13e/exec-06d72477-0364-414d-8478-7061dbff065a.png"
+}

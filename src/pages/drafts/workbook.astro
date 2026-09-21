@@ -1,0 +1,192 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import World from "../../components/World.astro";
+const palette = [
+  { name: "Florets Yellow", hex: "#ffd11b" },
+  { name: "Sky Blue", hex: "#8dcaff" },
+  { name: "Leaf Green", hex: "#0d5500" },
+  { name: "Daisy White", hex: "#fffaeb" },
+  { name: "Deep Green", hex: "#001400" },
+];
+---
+
+<Layout title="Behind the pixels — 16-Bit Con explorations">
+  <header class="wrap drafts-header">
+    <a href="/">
+      <img src="/images/vega-logo.svg" alt="Vega" width="100" height="33" />
+    </a>
+    <a href="/drafts">↖ All drafts</a>
+  </header>
+  <main id="main" class="wrap">
+    <section class="drafts-intro">
+      <span class="mono">DESIGN WORKBOOK / SEPTEMBER 2026</span>
+      <h1>
+        Behind
+        <br />
+        the pixels.
+      </h1>
+      <p>
+        Three directions, one small world. An open sketchbook of the
+        composition, color, and interaction decisions behind 16-Bit Con.
+      </p>
+    </section>
+    <div class="draft-directions">
+      <article class="draft-card">
+        <div class="draft-art draft-lavender">
+          <span class="mono">01 / EARLY COLOR STUDY</span>
+          <h2>
+            16-Bit
+            <br />
+            Con ✳
+          </h2>
+          <p style="margin-top:35px">The future looks familiar.</p>
+        </div>
+        <div class="notes">
+          <h3>Future nostalgia</h3>
+          <p>
+            An initial lavender poster study, imagined before receiving the
+            brand file. The soft palette felt playful, but weakened Vega’s
+            distinctive green and yellow. Kept the oversized typography; retired
+            the color direction.
+          </p>
+        </div>
+      </article>
+      <article class="draft-card">
+        <div class="draft-art draft-terminal">
+          <span class="mono">02 / TERMINAL STUDY</span>
+          <h2>
+            &gt; HELLO_
+            <br />
+            16-BIT
+            <br />
+            CON.
+          </h2>
+          <p class="mono" style="margin-top:35px">
+            SYSTEM STATUS: READY TO PLAY
+          </p>
+        </div>
+        <div class="notes">
+          <h3>Back to the terminal</h3>
+          <p>
+            Deep green, yellow prompts, and an operating-system metaphor. Strong
+            nostalgia, but too much code imagery made the invitation feel
+            exclusive to developers. Kept a little of this for the pixel studio
+            window.
+          </p>
+        </div>
+      </article>
+      <article class="draft-card">
+        <div class="draft-art draft-world">
+          <span class="mono">03 / SELECTED DIRECTION</span>
+          <h2>
+            A small
+            <br />
+            world.
+          </h2>
+          <World />
+        </div>
+        <div class="notes">
+          <h3>A world worth exploring</h3>
+          <p>
+            The final direction combines the brand palette and Mondwest with an
+            original miniature convention. An oversized computer becomes a
+            meeting place. Technology feels human, social, and open to everyone.
+          </p>
+        </div>
+      </article>
+    </div>
+    <section class="draft-section" style="margin-top:65px">
+      <span class="section-marker mono">THE FOUNDATION</span>
+      <h2>Vega, down to the pixel.</h2>
+      <p>
+        Colors and logo come from the supplied Figma brand guidelines. PP
+        Mondwest provides the pixel character; Geist keeps practical information
+        clear. Geist Mono is reserved for timings, labels, and the drawing tool.
+        The local font files match those served by Vega’s public website.
+      </p>
+      <div class="draft-token-grid">
+        {palette.map((p) => (
+          <div
+            class="token"
+            style={`background:${p.hex};color:${["#0d5500", "#001400"].includes(p.hex) ? "#fffaeb" : "#001400"}`}
+          >
+            <span>{p.name}</span>
+            <span class="mono">{p.hex.toUpperCase()}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+    <section class="draft-section">
+      <h2>Composition before decoration.</h2>
+      <p>
+        A split poster lets the event name and registration stay immediately
+        legible while the illustration gets room to breathe. On mobile, the
+        reading order stays intact: event, date, place, then the world. A
+        centered alternative competed with the illustration and pushed the CTA
+        too far down.
+      </p>
+      <div class="wireframes">
+        <pre>SELECTED / SPLIT POSTER
+┌─────────────────────────────┐
+│ VEGA     NAVIGATION    PASS │
+├────────────┬────────────────┤
+│ 16-BIT     │                │
+│ CON        │  SMALL WORLD   │
+│            │  ILLUSTRATION  │
+│ GET PASS   │                │
+│ DATE/PLACE │                │
+├────────────┴────────────────┤
+│ EXPERIENCE → LINEUP → PLAY  │
+└─────────────────────────────┘</pre>
+        <pre>EXPLORATION / CENTERED POSTER
+┌─────────────────────────────┐
+│ VEGA                   PASS │
+│          16-BIT CON         │
+│         SMALL PIXELS       │
+│           BIG IDEAS        │
+│      WORLD ILLUSTRATION    │
+│          GET PASS          │
+│         DATE / PLACE       │
+├─────────────────────────────┤
+│ Rejected: delayed action   │
+└─────────────────────────────┘</pre>
+      </div>
+    </section>
+    <section class="draft-section">
+      <h2>Make the invitation playable.</h2>
+      <p>
+        The 16 × 16 pixel studio is the creative fourth section. It starts with
+        a flower, connecting back to Vega, and gives visitors a tiny creative
+        artifact to take away. Drawing works with a mouse, touch, or a keyboard.
+        A souvenir pass brings the event concept to life without pretending to
+        process real registrations.
+      </p>
+    </section>
+    <section class="draft-section">
+      <h2>The practical details.</h2>
+      <p>
+        Astro generates static HTML with a small TypeScript module for the
+        canvas and pass dialog. No UI framework. No external runtime fonts. No
+        tracking. Reduced motion is respected, native disclosure elements expose
+        the agenda, and every drawing color has a text label.
+      </p>
+      <p style="margin-top:22px">
+        Event date, location, and sessions are fictional editorial choices.
+        Exact source assets and the original illustration component are included
+        in the project.
+      </p>
+      <p style="margin-top:25px">
+        <a
+          class="text-button"
+          href="https://www.figma.com/design/IOaTIe2PBjpjxujIvQX5aT/"
+        >
+          Open the duplicated Figma workbook ↗
+        </a>
+      </p>
+    </section>
+  </main>
+  <footer class="wrap">
+    <a href="/drafts">Return to all drafts ↗</a>
+    <span class="mono">16-BIT CON / DESIGN EXPLORATIONS</span>
+  </footer>
+</Layout>

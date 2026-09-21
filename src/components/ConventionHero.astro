@@ -1,0 +1,416 @@
+---
+import { event } from "../design/event";
+---
+
+<section class="con-hero" aria-labelledby="event-name">
+  <div class="wrap con-heading">
+    <div class="con-heading-top">
+      <span>
+        <i aria-hidden="true"></i> A celebration of pixels.
+      </span>
+      <span>
+        {event.location} <b aria-hidden="true">↗</b> {event.date}
+      </span>
+    </div>
+    <h1 id="event-name" aria-label="16-Bit Con">
+      <span data-font-word class="hero-word" tabindex="0">
+        <span class="font-base">16</span>
+        <span class="font-frame" aria-hidden="true">
+          16
+        </span>
+      </span>
+      <span aria-hidden="true">-</span>
+      <span data-font-word class="hero-word" tabindex="0">
+        <span class="font-base">Bit</span>
+        <span class="font-frame" aria-hidden="true">
+          Bit
+        </span>
+      </span>{" "}
+      <span data-font-word class="hero-word" tabindex="0">
+        <span class="font-base">Con</span>
+        <span class="font-frame" aria-hidden="true">
+          Con
+        </span>
+      </span>
+      <span aria-hidden="true" class="con-spark">
+        ✳
+      </span>
+    </h1>
+    <div class="con-intro">
+      <p class="con-description">
+        The retro gaming convention for people who never stopped playing.
+      </p>
+      <a href="#register" class="button ticket-cta">
+        <span class="ticket-cta-label">
+          Get your pass <span aria-hidden="true">↗</span>
+        </span>
+        <span class="ticket-sparkles" aria-hidden="true">
+          {Array.from({ length: 8 }, (_, i) => (
+            <i style={`--i:${i}`}></i>
+          ))}
+        </span>
+      </a>
+      <div class="con-caption">
+        <span>Pick up a little personality.</span>
+        <button
+          id="con-motion"
+          type="button"
+          aria-pressed="false"
+          aria-label="Pause queue motion"
+          disabled
+        >
+          Ⅱ Pause
+        </button>
+      </div>
+      <p id="con-response" class="con-sr-only" role="status"></p>
+    </div>
+  </div>
+  <div class="con-stage">
+    <div
+      id="con-world"
+      class="con-world"
+      tabindex="0"
+      role="group"
+      aria-label="Interactive mole queue. Click a mole to celebrate. Drag a mole to pick it up. Keyboard: arrows select, Enter picks up or releases, arrows move the held mole, Space nudges, Escape releases."
+    >
+      <img
+        id="con-fallback"
+        src="/mole-kit/lineup.png"
+        alt="The colorful 16-Bit Con mole crowd"
+        width="1800"
+        height="760"
+      />
+      <div id="con-bubbles" aria-hidden="true"></div>
+      <div id="con-tooltip" hidden aria-hidden="true"></div>
+      <span id="con-world-note" class="con-sr-only">
+        The line is forming…
+      </span>
+    </div>
+  </div>
+</section>
+<script is:inline type="importmap">
+  { "imports": { "three": "/mole-kit/vendor/three.module.js" } }
+</script>
+<script is:inline type="module" src="/convention-header.js"></script>
+<script>
+  import "../scripts/hero-type";
+</script>
+<style>
+  .hero-word {
+    position: relative;
+    display: inline-block;
+    outline-offset: 4px;
+  }
+  .font-frame {
+    position: absolute;
+    inset: 0;
+    white-space: nowrap;
+    visibility: hidden;
+    transform-origin: left center;
+    font-size: 0.82em;
+    line-height: 1.15;
+    letter-spacing: -0.045em;
+  }
+  .font-running .font-base {
+    visibility: hidden;
+  }
+  .font-running .font-frame {
+    visibility: visible;
+  }
+  .font-redaction {
+    font-family: var(--font-redaction);
+  }
+  .font-redaction35 {
+    font-family: var(--font-redaction35);
+  }
+  .font-redaction50 {
+    font-family: var(--font-redaction50);
+  }
+  .font-redaction70 {
+    font-family: var(--font-redaction70);
+  }
+
+  .ticket-cta {
+    position: relative;
+    isolation: isolate;
+    min-height: 46px;
+    gap: var(--space-6);
+  }
+  /* .button span sizes the bare arrow glyph at 23px. This label is a span too,
+     so it needs its own, much smaller size for the words. */
+  .ticket-cta-label {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+  .ticket-cta-label span {
+    font-size: 14px;
+    line-height: 1;
+  }
+  .ticket-sparkles {
+    position: absolute;
+    inset: -14px;
+    pointer-events: none;
+  }
+  .ticket-sparkles i {
+    position: absolute;
+    left: calc(7% + var(--i) * 12%);
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    background: var(--color-heading);
+    opacity: 0;
+    box-shadow:
+      -6px 0 var(--color-heading),
+      6px 0 var(--color-heading),
+      0 -6px var(--color-heading),
+      0 6px var(--color-heading);
+  }
+  .ticket-sparkles i:nth-child(even) {
+    --dy: 40px;
+  }
+  .ticket-sparkles i:nth-child(odd) {
+    --dy: -40px;
+  }
+  .ticket-cta:is(:hover, :focus-visible) .ticket-sparkles i {
+    animation: ticket-sparkle 700ms steps(5, end) calc(var(--i) * 45ms) both;
+  }
+  @keyframes ticket-sparkle {
+    0% {
+      opacity: 0;
+      transform: translateY(0) scale(0);
+    }
+    25% {
+      opacity: 1;
+    }
+    65% {
+      opacity: 1;
+      transform: translateY(var(--dy)) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(calc(var(--dy) * 1.3)) scale(0);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticket-cta:is(:hover, :focus-visible) .ticket-sparkles i {
+      animation: none;
+    }
+  }
+  .con-hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .con-heading {
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+  }
+  .con-heading :is(a, button, [data-font-word]) {
+    pointer-events: auto;
+  }
+  .con-heading-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-5) 0 10px;
+    border-top: 1px solid var(--color-border);
+    font-size: var(--text-xs);
+  }
+  .con-heading-top > span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .con-heading-top i {
+    width: 7px;
+    height: 7px;
+    background: var(--color-heading);
+  }
+  .con-heading-top b {
+    font-size: var(--text-base);
+    font-weight: 400;
+    margin: 0 var(--space-3);
+  }
+  h1 {
+    font: clamp(110px, 17.7vw, 248px)/0.95 var(--font-display);
+    letter-spacing: -0.06em;
+    color: var(--color-heading);
+    margin: 14px 0 var(--space-1);
+    white-space: nowrap;
+  }
+  .con-spark {
+    font: 0.4em var(--font-mono);
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.25em;
+    transform: rotate(-8deg);
+  }
+  .con-intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
+  .con-description {
+    max-width: 390px;
+    font-size: var(--text-base);
+    line-height: 1.5;
+  }
+  .con-caption {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    font: 10px/1.5 var(--font-mono);
+    color: var(--color-heading);
+  }
+  .con-caption button {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    padding: 10px 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .con-stage {
+    position: static;
+    width: 100%;
+    height: clamp(340px, 48svh, 500px);
+    margin-top: 10px;
+  }
+  .con-world {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    isolation: isolate;
+    touch-action: none;
+    outline-offset: -3px;
+  }
+  .con-world :global(canvas) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    touch-action: none;
+  }
+  #con-fallback {
+    position: absolute;
+    inset: 12% 0;
+    width: 100%;
+    height: 76%;
+    object-fit: contain;
+    image-rendering: pixelated;
+  }
+  #con-fallback[hidden] {
+    display: none;
+  }
+  .con-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  #con-bubbles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  #con-bubbles :global(.mole-bubble) {
+    position: absolute;
+    box-sizing: border-box;
+    width: 164px;
+    padding: 9px 11px;
+    background: var(--color-surface-raised);
+    border: 2px solid var(--color-heading);
+    box-shadow: 3px 3px 0 var(--color-accent);
+    color: var(--color-heading);
+    font: 11px/1.4 var(--font-mono);
+    transform: translate(-50%, -100%);
+  }
+  #con-bubbles :global(.mole-bubble::after) {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: var(--tail, 50%);
+    width: 9px;
+    height: 9px;
+    background: var(--color-surface-raised);
+    border-right: 2px solid var(--color-heading);
+    border-bottom: 2px solid var(--color-heading);
+    transform: rotate(45deg);
+  }
+  #con-bubbles :global(.mole-bubble.thought) {
+    background: var(--color-surface-subtle);
+    border-style: dashed;
+    box-shadow: 3px 3px 0 var(--color-border);
+    font-style: italic;
+  }
+  #con-bubbles :global(.mole-bubble.thought::after) {
+    width: 5px;
+    height: 5px;
+    border: 1px solid var(--color-heading);
+    background: var(--color-surface-subtle);
+    transform: none;
+    box-shadow:
+      5px 6px 0 -1px var(--color-surface-subtle),
+      5px 6px 0 0 var(--color-heading);
+  }
+  @media (max-width: 600px) {
+    #con-bubbles :global(.mole-bubble) {
+      width: 138px;
+      font-size: var(--text-xs);
+    }
+  }
+  #con-tooltip {
+    position: absolute;
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+    background: var(--color-heading);
+    color: var(--color-surface);
+    font: 11px var(--font-mono);
+    padding: var(--space-2) 11px;
+    box-shadow: 3px 3px var(--color-accent);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 760px) {
+    .con-heading-top {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 10px;
+      font-size: var(--text-xs);
+    }
+    h1 {
+      font-size: clamp(58px, 15.2vw, 110px);
+      margin-block: var(--space-5) var(--space-4);
+    }
+    .con-intro {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .con-description {
+      font-size: var(--text-sm);
+    }
+    .con-stage {
+      height: 360px;
+    }
+  }
+</style>

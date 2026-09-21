@@ -1,0 +1,1 @@
+Seamless subtle 8-frame pixel-art loop. The cyan-goggled mole makes a tiny talking paw gesture while the other mole nods gently, then both settle back. Keep mouths subtle, microphone and background still. No speech bubbles or text. Fixed camera, no zoom or pan. Preserve shapes and palette, no new objects. Return exactly to the initial resting pose.

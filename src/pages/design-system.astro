@@ -1,0 +1,220 @@
+---
+import Layout from "../layouts/Layout.astro";
+import tokens from "../design/tokens.json";
+const roles = [
+  "color-surface",
+  "color-text",
+  "color-heading",
+  "color-accent",
+  "color-dark",
+  "color-border",
+  "color-pixel-lime",
+  "color-sky-background",
+];
+---
+
+<Layout title="Design system — 16-Bit Con">
+  <main id="main" class="wrap system-page">
+    <a href="/">← Back to the convention</a>
+    <p class="mono">Vega / 16-Bit Con</p>
+    <h1>
+      Built one
+      <br />
+      pixel at a time.
+    </h1>
+    <p class="system-lead">
+      A small system for a loud little world. Brand primitives feed semantic
+      tokens; components and canvas graphics share the same source.
+    </p>
+    <section>
+      <h2>Color with a job.</h2>
+      <div class="swatch-grid">
+        {roles.map((role) => (
+          <figure>
+            <div class="token-color" style={`background:var(--${role})`}></div>
+            <figcaption>
+              <strong>{role}</strong>
+              <code>{tokens[role as keyof typeof tokens]}</code>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <p>
+        Sky Blue is reserved for sky backgrounds. Tickets, foreground pixels,
+        controls, and motion accents use yellow, green, cream, or ink.
+      </p>
+    </section>
+    <section>
+      <h2>Type with character.</h2>
+      <div class="type-specimen">
+        <span class="mono">Display / PP Mondwest</span>
+        <strong>Never stopped playing.</strong>
+        <p>Body / Geist — readable at every checkpoint.</p>
+        <code>Metadata / Geist Mono — 10:00 AM · Booth 630</code>
+      </div>
+      <p>
+        Redaction, 35, 50, and 70 appear only in the brief word-hover sequence.
+        PP Mondwest remains the headline face.
+      </p>
+    </section>
+    <section>
+      <h2>Room to play.</h2>
+      <div class="spacing-row">
+        {[1, 2, 3, 4, 6, 8, 12, 16].map((n) => (
+          <div>
+            <span
+              style={`height:var(--space-${n});width:var(--space-${n})`}
+            ></span>
+            <code>space-{n}</code>
+          </div>
+        ))}
+      </div>
+      <p>
+        4px spacing foundation. 44px interactive targets. 1440px content
+        maximum. Fluid outer gutters.
+      </p>
+    </section>
+    <section>
+      <h2>Small moves. Clear feedback.</h2>
+      <div class="controls">
+        <a class="button" href="/#register">
+          Find Booth 630 <span aria-hidden="true">↗</span>
+        </a>
+        <button type="button" class="button dark" id="system-example">
+          Try a button
+        </button>
+        <span role="status" id="system-status"></span>
+      </div>
+      <p>
+        80ms font steps · 180ms press feedback · 680ms scene navigation · 720ms
+        pixel reveal. Reduced motion shows the final state immediately.
+      </p>
+    </section>
+    <section>
+      <h2>The token contract.</h2>
+      <p>
+        Source: <code>src/design/tokens.json</code>. CSS is generated with{" "}
+        <code>npm run tokens</code>. Canvas and exported tickets resolve the
+        same roles through <code>src/design/tokens.ts</code>.
+      </p>
+      <details>
+        <summary>Inspect every token</summary>
+        <dl class="token-list">
+          {Object.entries(tokens).map(([name, value]) => (
+            <div>
+              <dt>
+                <code>--{name}</code>
+              </dt>
+              <dd>
+                <code>{value}</code>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </details>
+    </section>
+  </main>
+</Layout>
+<script>
+  document.querySelector("#system-example")?.addEventListener("click", () => {
+    document.querySelector("#system-status")!.textContent =
+      "Ready for the next level.";
+  });
+</script>
+<style>
+  .system-page {
+    padding-block: var(--space-12);
+  }
+  h1 {
+    font: var(--text-section)/var(--leading-heading) var(--font-display);
+    color: var(--color-heading);
+    margin-block: var(--space-6);
+  }
+  section {
+    margin-top: var(--space-20);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-8);
+  }
+  section h2 {
+    font-size: var(--text-session);
+    margin-bottom: var(--space-8);
+  }
+  p {
+    max-width: 65ch;
+    margin-block: var(--space-6);
+  }
+  code {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    overflow-wrap: anywhere;
+  }
+  .system-lead {
+    font-size: var(--text-lg);
+  }
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+  figure {
+    margin: 0;
+  }
+  .token-color {
+    height: 120px;
+    outline: 1px solid var(--color-border);
+    outline-offset: -1px;
+  }
+  figcaption strong,
+  figcaption code {
+    display: block;
+    font-size: var(--text-xs);
+    margin-top: var(--space-3);
+    overflow-wrap: anywhere;
+  }
+  .type-specimen strong {
+    display: block;
+    font: var(--text-session) var(--font-display);
+    color: var(--color-heading);
+    margin-top: var(--space-6);
+  }
+  .spacing-row {
+    display: flex;
+    gap: var(--space-6);
+    align-items: end;
+    flex-wrap: wrap;
+  }
+  .spacing-row span {
+    display: block;
+    background: var(--color-heading);
+    margin-bottom: var(--space-4);
+  }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    align-items: center;
+  }
+  summary {
+    min-height: var(--target-min);
+    cursor: pointer;
+  }
+  .token-list > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .token-list dd {
+    margin: 0;
+  }
+  @media (max-width: 760px) {
+    .swatch-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .token-list > div {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+    }
+  }
+</style>

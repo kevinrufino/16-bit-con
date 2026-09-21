@@ -1,0 +1,1 @@
+{"name":"mole-coffee","frameWidth":128,"frameHeight":128,"frameCount":8,"frameDurationMs":180,"loop":true,"spriteSheet":"spritesheet.png","frames":["frame-00.png","frame-01.png","frame-02.png","frame-03.png","frame-04.png","frame-05.png","frame-06.png","frame-07.png"],"poster":"frame-00.png"}

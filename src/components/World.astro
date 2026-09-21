@@ -1,0 +1,213 @@
+---
+const tiles = Array.from({ length: 14 }, (_, i) => i);
+const people = [
+  { x: 170, y: 320, c: "#ffd11b" },
+  { x: 220, y: 375, c: "#ff7850" },
+  { x: 475, y: 354, c: "#8dcaff" },
+  { x: 551, y: 296, c: "#ffd11b" },
+  { x: 370, y: 443, c: "#fff7db" },
+  { x: 530, y: 422, c: "#ff7850" },
+  { x: 273, y: 278, c: "#8dcaff" },
+];
+---
+
+<svg
+  class="world"
+  viewBox="0 0 720 540"
+  role="img"
+  aria-labelledby="world-title"
+>
+  <title id="world-title">An isometric retro convention with a giant computer, arcade cabinets, tiny visitors, and pixel trees</title>
+  <defs>
+    <pattern
+      id="screen-lines"
+      width="4"
+      height="5"
+      patternUnits="userSpaceOnUse"
+    >
+      <path d="M0 0H4" stroke="#86b976" stroke-opacity=".13" />
+    </pattern>
+    <g id="tree">
+      <path d="M-4 0h8v-35h-8" fill="#5d6641" />
+      <path d="M0-90 32-73v30L0-26-30-43v-30Z" fill="#376c25" />
+      <path d="M0-90 32-73 0-55-30-73Z" fill="#7f9c39" />
+      <path d="M0-55 32-73v30L0-26Z" fill="#0d5500" />
+      <path d="M-24-70 0-83 22-71 0-58Z" fill="#9dac49" />
+    </g>
+    <g id="arcade">
+      <path
+        d="M0 0 28 14 48 4V-65L20-80 0-70Z"
+        fill="#0d5500"
+        stroke="#001400"
+        stroke-width="1.5"
+      />
+      <path d="m0-70 28 14 20-9-28-15Z" fill="#ffd11b" />
+      <path d="M28-56v70L48 4V-65" fill="#51803d" />
+      <path d="m5-60 18 9v25L5-35Z" fill="#001400" />
+      <path d="m8-54 12 6v12L8-42Z" fill="#8dcaff" />
+      <path d="m0-26 28 14v9L0-17Z" fill="#ffd11b" />
+      <path d="m5-24 7 3v3l-7-3Z" fill="#001400" />
+      <path d="M18-18v-8" stroke="#001400" stroke-width="2" />
+      <path d="m8-10 12 6v15L8 5Z" fill="#356d21" />
+    </g>
+  </defs>
+  <ellipse cx="360" cy="435" rx="275" ry="62" fill="#315834" opacity=".08" />
+  <path
+    d="m62 294 303-163 303 165v30L365 490 62 325Z"
+    fill="#326844"
+    stroke="#143c27"
+    stroke-width="2"
+  />
+  <path
+    d="m62 294 303-163 303 165L365 460Z"
+    fill="#d1d69e"
+    stroke="#143c27"
+    stroke-width="2"
+  />
+  <path d="M365 460v30l303-164v-30Z" fill="#174e36" />
+  {tiles.map((i) => (
+    <>
+      <path
+        d={`M${62 + i * 22} ${294 + i * 12}l303-163`}
+        stroke="#b5bf8f"
+        stroke-width="1"
+      />
+      <path
+        d={`M${365 + i * 22} ${131 + i * 12}L${62 + i * 22} ${294 + i * 12}`}
+        stroke="#b5bf8f"
+        stroke-width="1"
+      />
+    </>
+  ))}
+  <path d="m168 351 40 23 302-163-41-22Z" fill="#eeeed0" />
+  <path d="m270 182 41-22 303 165-42 22Z" fill="#eeeed0" />
+  <use href="#tree" x="136" y="289" />
+  <use href="#tree" x="596" y="298" />
+  <use href="#tree" x="611" y="354" />
+  <g class="computer">
+    <path d="m259 318 138 75 124-68-140-75Z" fill="#64755b" opacity=".2" />
+    <path
+      d="m249 302 132 70 104-55v-24l-132-71-104 55Z"
+      fill="#a5ac80"
+      stroke="#344e37"
+      stroke-width="2"
+    />
+    <path
+      d="m249 277 132 70 104-54-132-71Z"
+      fill="#f1ebc9"
+      stroke="#344e37"
+      stroke-width="2"
+    />
+    <path d="m381 347 104-54v24l-104 55Z" fill="#8f9c75" />
+    <path d="m269 273 111 59 78-41-111-59Z" fill="#889574" />
+    {Array.from({ length: 5 }, (_, r) =>
+      Array.from({ length: 10 }, (_, c) => (
+        <path
+          d={`m${280 + c * 10 + r * 11} ${273 + c * 5.4 - r * 6} 8 4.2 8-4.2-8-4.2Z`}
+          fill="#e8e4be"
+        />
+      )),
+    )}
+    <path
+      d="m302 203 70 38v42l-70-38Z"
+      fill="#d3d1a9"
+      stroke="#344e37"
+      stroke-width="2"
+    />
+    <path d="m372 241 43-24v42l-43 24Z" fill="#879771" />
+    <path
+      d="m225 88 90-49 166 88v157l-90 49-166-89Z"
+      fill="#a7b18a"
+      stroke="#344e37"
+      stroke-width="2"
+    />
+    <path d="m225 88 166 89 90-50-166-88Z" fill="#fff6d8" />
+    <path d="m391 177 90-50v157l-90 49Z" fill="#94a17c" />
+    <path d="m236 101 143 77v132l-143-77Z" fill="#dedbb5" />
+    <path d="m246 117 122 66v98l-122-66Z" fill="#526949" />
+    <path d="m253 127 108 58v82l-108-58Z" fill="#002c1e" />
+    <g transform="matrix(1 .54 0 1 258 142)">
+      <text
+        x="8"
+        y="19"
+        fill="#ffd11b"
+        font-family="monospace"
+        font-size="21"
+        font-weight="bold"
+      >
+        HELLO,
+      </text>
+      <text
+        x="8"
+        y="43"
+        fill="#ffd11b"
+        font-family="monospace"
+        font-size="21"
+        font-weight="bold"
+      >
+        WORLD.
+      </text>
+      <rect x="9" y="55" width="9" height="3" fill="#fffaeb" class="cursor" />
+      <rect width="100" height="75" y="-5" fill="url(#screen-lines)" />
+    </g>
+    <path d="m252 238 24 13v5l-24-13Z" fill="#8a9770" />
+    <path d="m353 290 8 4v5l-8-4Z" fill="#ffd11b" />
+    {Array.from({ length: 7 }, (_, i) => (
+      <path
+        d={`M${414 + i * 6} ${185 - i * 3.3}v32`}
+        stroke="#607950"
+        stroke-width="2"
+      />
+    ))}
+  </g>
+  <g transform="translate(162 346)">
+    <use href="#arcade" />
+  </g>
+  <g transform="translate(119 369)">
+    <use href="#arcade" />
+  </g>
+  <g>
+    <path
+      d="m479 374 74-40 49 27-74 40Z"
+      fill="#ffd11b"
+      stroke="#344e37"
+      stroke-width="1.5"
+    />
+    <path d="M479 374v10l49 27v-10Z" fill="#d19b05" />
+    <path d="m528 401 74-40v10l-74 40Z" fill="#aa7d09" />
+    <path
+      d="M487 388v21m101-34v19m-57 18v20"
+      stroke="#344e37"
+      stroke-width="5"
+    />
+    <path d="m511 362 19-10 18 10-19 11Z" fill="#fffaeb" />
+    <path d="m550 368 14-7 13 7-14 7Z" fill="#0d5500" />
+  </g>
+  {people.map((p) => (
+    <g transform={`translate(${p.x} ${p.y})`}>
+      <path d="m-6 2 13 7 10-5-13-7Z" fill="#244b35" opacity=".18" />
+      <path d="M-4-10v12m9-12v12" stroke="#173b2b" stroke-width="4" />
+      <path d="M-7-26H8v17H-7Z" fill={p.c} />
+      <path d="M-10-25v13M11-25v13" stroke="#ce9b6a" stroke-width="4" />
+      <path d="M-5-38H6v12H-5Z" fill="#e8bd87" />
+      <path d="M-6-39H7v5H-6Z" fill="#243e2c" />
+    </g>
+  ))}
+  <use href="#tree" x="267" y="428" />
+  <g transform="translate(561 192)">
+    <path d="M0 0v70" stroke="#0d5500" stroke-width="3" />
+    <path
+      d="M0 0h57v33H0Z"
+      fill="#ffd11b"
+      stroke="#0d5500"
+      stroke-width="1.5"
+    />
+    <text x="8" y="21" font-family="monospace" font-size="13" fill="#001400">
+      16-BIT
+    </text>
+  </g>
+  <g fill="#fffaeb">
+    <path d="M105 112h13V99h5v13h13v5h-13v13h-5v-13h-13Z" />
+    <path d="M563 65h10V55h4v10h10v4h-10v10h-4V69h-10Z" />
+  </g>
+</svg>

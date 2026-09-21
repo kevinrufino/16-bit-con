@@ -1,0 +1,196 @@
+<section id="about" class="experience" aria-labelledby="experience-title">
+  <div class="wrap experience-inner">
+    <div class="section-marker mono">01 / THE EXPERIENCE</div>
+    <div class="experience-copy">
+      <h2 id="experience-title">
+        Your save file.
+        <br />
+        Your people.
+      </h2>
+      <div>
+        <p class="large-copy">
+          You didn’t outgrow it.
+          <br />
+          You just found better teammates.
+        </p>
+        <p>
+          Trade the group chat for a real arcade. Meet the artists, modders, and
+          late-night builders keeping the good pixels alive.
+        </p>
+      </div>
+    </div>
+    <div class="experience-stats">
+      <div>
+        <strong data-font-word tabindex="0" data-roll="3" aria-label="3 days">
+          <span class="font-base" aria-hidden="true">
+            03
+          </span>
+          <span class="font-frame" aria-hidden="true">
+            03
+          </span>
+        </strong>
+        <span>Days of free play</span>
+      </div>
+      <div>
+        <strong
+          data-font-word
+          tabindex="0"
+          data-roll="3"
+          aria-label="3 featured sessions"
+        >
+          <span class="font-base" aria-hidden="true">
+            03
+          </span>
+          <span class="font-frame" aria-hidden="true">
+            03
+          </span>
+        </strong>
+        <span>Sessions worth pausing for</span>
+      </div>
+      <div>
+        <strong
+          data-font-word
+          tabindex="0"
+          data-roll="630"
+          aria-label="Booth 630"
+        >
+          <span class="font-base" aria-hidden="true">
+            630
+          </span>
+          <span class="font-frame" aria-hidden="true">
+            630
+          </span>
+        </strong>
+        <span>Our booth. Your next stop.</span>
+      </div>
+    </div>
+    <a class="experience-next mono" href="#schedule">
+      Explore the lineup <span aria-hidden="true">↓</span>
+    </a>
+  </div>
+</section>
+<script>
+  import "../scripts/experience";
+  import "../scripts/hero-type";
+</script>
+<style>
+  .experience {
+    min-height: 100svh;
+    height: 100svh;
+    background: var(--color-accent);
+    color: var(--color-text);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: clip;
+  }
+  .experience-inner {
+    width: 100%;
+    padding-block: var(--space-16);
+  }
+  .experience-copy {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: var(--space-16);
+    align-items: end;
+  }
+  .experience h2 {
+    font-size: var(--text-section);
+    color: var(--color-heading);
+    text-wrap: balance;
+  }
+  .experience-copy p:not(.large-copy) {
+    max-width: 44ch;
+    font-size: var(--text-sm);
+  }
+  .experience .section-marker {
+    color: var(--color-text);
+  }
+  .experience-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+    margin-top: var(--space-16);
+    border-top: 1px solid var(--color-text);
+    padding-top: var(--space-6);
+  }
+  .experience-stats strong {
+    position: relative;
+    width: fit-content;
+    min-width: 1.2em;
+    display: block;
+    font: var(--text-stat)/1 var(--font-display);
+    color: var(--color-heading);
+    font-variant-numeric: tabular-nums;
+    height: 1.05em;
+    overflow: hidden;
+  }
+  .experience-stats > div > span {
+    font-size: var(--text-sm);
+    display: block;
+    margin-top: var(--space-3);
+  }
+  .experience-next {
+    display: flex;
+    justify-content: space-between;
+    padding-block: var(--space-4);
+    margin-top: var(--space-8);
+    border-bottom: 1px solid currentColor;
+    min-height: var(--target-min);
+  }
+  .experience :global(.roll-digit) {
+    display: inline-block;
+    width: 0.58em;
+    height: 1em;
+    vertical-align: top;
+    overflow: hidden;
+  }
+  .experience :global(.roll-strip) {
+    display: flex;
+    flex-direction: column;
+  }
+  .experience :global(.roll-strip i) {
+    font-style: normal;
+    display: block;
+    height: 1em;
+    flex: 0 0 1em;
+  }
+  @media (max-width: 760px) {
+    .experience-inner {
+      padding-block: var(--space-8);
+    }
+    .experience-copy {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+    .experience h2 {
+      font-size: var(--text-section-mobile);
+    }
+    .experience .large-copy {
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-3);
+    }
+    .experience .section-marker {
+      margin-bottom: var(--space-6);
+    }
+    .experience-stats {
+      gap: var(--space-3);
+      margin-top: var(--space-8);
+    }
+    .experience-stats strong {
+      position: relative;
+      width: fit-content;
+      min-width: 1.2em;
+      font-size: var(--text-stat-mobile);
+    }
+    .experience-stats > div > span {
+      font-size: var(--text-xs);
+    }
+  }
+  @media (max-height: 640px) {
+    .experience {
+      height: auto;
+      min-height: 100svh;
+    }
+  }
+</style>

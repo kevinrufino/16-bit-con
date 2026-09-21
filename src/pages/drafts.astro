@@ -1,0 +1,360 @@
+---
+import Layout from "../layouts/Layout.astro";
+const drafts = [
+  {
+    id: "guided-lineup",
+    href: "/drafts/guided-lineup",
+    title: "Guided lineup + booth CTA",
+    type: "Full-page exploration",
+    preview: "hero",
+    description: "The three full-screen sessions, pixel reveals, Booth 630 section, and green mole recoloring preserved together.",
+  },
+  {
+    id: "raw-explorations",
+    href: "/drafts/explorations",
+    title: "Raw explorations",
+    type: "Process archive",
+    preview: "workbook",
+    description:
+      "Concepts, contact sheets, frame-by-frame animation studies, and conveyor design notes.",
+  },
+  {
+    id: "landscape-hero",
+    href: "/drafts/landscape-hero",
+    title: "Pixel landscape hero",
+    type: "Hero exploration",
+    preview: "landscape",
+    description:
+      "The landscape-backed mole queue, with the side-column headline and curtain transitions preserved.",
+  },
+  {
+    id: "mole-kit",
+    href: "/mole-kit/",
+    title: "Mole character lab",
+    type: "Character workshop",
+    preview: "mole-kit",
+    description:
+      "Meet the six moles, explore their 3D models, and experiment with the character kit.",
+  },
+  {
+    id: "hero-archive",
+    href: "/drafts/convention-hero",
+    title: "Interactive convention hero",
+    type: "Hero",
+    preview: "hero",
+    description:
+      "Six little personalities. Meet the moles, explore the scene, and start a pixel party.",
+  },
+  {
+    id: "previous-versions",
+    href: "/drafts/original-cta#play",
+    title: "Original pixel studio + ticket",
+    type: "CTA",
+    preview: "ticket",
+    description:
+      "The first invitation: a standalone pixel editor, an oversized ticket, and a souvenir pass.",
+  },
+  {
+    id: "workbook",
+    href: "/drafts/workbook",
+    title: "Behind the pixels",
+    type: "Design workbook",
+    preview: "workbook",
+    description:
+      "The early color and terminal studies, original world, brand palette, and composition notes.",
+  },
+];
+---
+
+<Layout title="Draft directory — 16-Bit Con">
+  <header class="wrap directory-header">
+    <a href="/" aria-label="16-Bit Con home">
+      <img src="/images/vega-logo.svg" alt="Vega" width="100" height="33" />
+    </a>
+    <a href="/">Back to the main site ↗</a>
+  </header>
+  <main id="main" class="wrap directory">
+    <div class="directory-intro">
+      <h1>
+        Drafts<span aria-hidden="true">✳</span>
+      </h1>
+      <p>
+        A little archive of things we tried.
+        <br />
+        Open a draft to explore it.
+      </p>
+    </div>
+    <div class="directory-label mono">
+      <span>16-Bit Con / Explorations</span>
+      <span>{drafts.length} saved drafts</span>
+    </div>
+    <ul class="draft-list">
+      {drafts.map((draft) => (
+        <li id={draft.id}>
+          <a class="draft-entry" href={draft.href}>
+            <div
+              class:list={["entry-preview", draft.preview]}
+              aria-hidden="true"
+            >
+              {draft.preview === "landscape" && (
+                <img src="/images/hero-landscape.png" alt="" loading="lazy" />
+              )}
+              {draft.preview === "hero" && (
+                <img
+                  src="/drafts/convention-hero/lineup.png"
+                  alt=""
+                  width="1800"
+                  height="760"
+                />
+              )}
+              {draft.preview === "mole-kit" && (
+                <img src="/mole-kit/lineup.png" alt="" loading="lazy" />
+              )}
+              {draft.preview === "ticket" && (
+                <div class="mini-ticket">
+                  <span>ADMIT ONE</span>
+                  <strong>
+                    16-Bit
+                    <br />
+                    Con
+                  </strong>
+                  <span>✳ ALL ACCESS</span>
+                </div>
+              )}
+              {draft.preview === "workbook" && (
+                <div class="mini-workbook">
+                  <strong>Aa ✳</strong>
+                  <div>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div class="entry-copy">
+              <span class="entry-type mono">{draft.type}</span>
+              <h2>{draft.title}</h2>
+              <p>{draft.description}</p>
+            </div>
+            <span class="entry-open">
+              Open draft <span aria-hidden="true">↗</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </main>
+  <footer class="wrap directory-footer">
+    <span>Small pixels. Plenty of possibilities.</span>
+    <a href="/">16-Bit Con ↗</a>
+  </footer>
+</Layout>
+<style>
+  .directory-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding-block: 28px;
+  }
+  .directory-header a:last-child {
+    font-size: var(--text-sm);
+  }
+  .directory {
+    padding-top: 56px;
+    padding-bottom: var(--space-16);
+  }
+  .directory-intro {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--space-8);
+    margin-bottom: 56px;
+  }
+  h1 {
+    font: clamp(80px, 10vw, 144px)/0.9 var(--font-display);
+    letter-spacing: -0.05em;
+  }
+  h1 span {
+    display: inline-block;
+    color: var(--color-heading);
+    font-size: 0.55em;
+    margin-left: var(--space-6);
+    vertical-align: top;
+  }
+  .directory-intro p {
+    font-size: 17px;
+  }
+  .directory-label {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    font-size: var(--text-xs);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-text);
+  }
+  .draft-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .draft-list li {
+    border-bottom: 1px solid var(--color-border);
+    scroll-margin-top: var(--space-8);
+  }
+  .draft-entry {
+    display: grid;
+    grid-template-columns: 220px 1fr auto;
+    align-items: center;
+    gap: 36px;
+    padding: 28px 0;
+  }
+  .draft-entry:hover .entry-open,
+  .draft-entry:focus-visible .entry-open {
+    background: var(--color-accent);
+  }
+  .draft-entry:focus-visible {
+    outline-offset: 8px;
+  }
+  .entry-preview {
+    height: 150px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: var(--color-surface-subtle);
+  }
+  .landscape img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero img,
+  .mole-kit img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .ticket {
+    background: var(--color-heading);
+  }
+  .mini-ticket {
+    width: 104px;
+    padding: 10px var(--space-3);
+    background: var(--color-accent);
+    transform: rotate(-8deg);
+    border-bottom: 5px dotted var(--color-heading);
+  }
+  .mini-ticket span {
+    display: block;
+    font: 7px var(--font-mono);
+  }
+  .mini-ticket strong {
+    display: block;
+    font: 32px/0.9 var(--font-display);
+    margin: 10px 0;
+  }
+  .workbook {
+    background: var(--color-sky-background);
+  }
+  .mini-workbook strong {
+    font: 64px/1 var(--font-display);
+  }
+  .mini-workbook div {
+    display: flex;
+    margin-top: var(--space-3);
+  }
+  .mini-workbook i {
+    width: 28px;
+    height: 16px;
+    background: var(--color-accent);
+  }
+  .mini-workbook i:nth-child(2) {
+    background: var(--color-heading);
+  }
+  .mini-workbook i:nth-child(3) {
+    background: var(--color-surface);
+  }
+  .mini-workbook i:nth-child(4) {
+    background: var(--color-text);
+  }
+  .entry-type {
+    font-size: var(--text-xs);
+  }
+  .entry-copy h2 {
+    font-size: clamp(30px, 3vw, 42px);
+    line-height: 1.05;
+    margin: 10px 0;
+  }
+  .entry-copy p {
+    max-width: 55ch;
+    font-size: var(--text-sm);
+  }
+  .entry-open {
+    white-space: nowrap;
+    font-size: var(--text-sm);
+    padding: var(--space-3);
+  }
+  .entry-open span {
+    margin-left: 10px;
+  }
+  .directory-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding-block: 26px;
+    font-size: var(--text-xs);
+  }
+  @media (max-width: 760px) {
+    .directory {
+      padding-top: 36px;
+    }
+    .directory-intro {
+      display: block;
+      margin-bottom: 36px;
+    }
+    .directory-intro p {
+      margin-top: var(--space-6);
+    }
+    .draft-entry {
+      grid-template-columns: 120px 1fr;
+      gap: var(--space-5);
+    }
+    .entry-preview {
+      height: 130px;
+    }
+    .entry-open {
+      grid-column: 2;
+      padding: 0;
+      justify-self: start;
+    }
+    .entry-copy h2 {
+      font-size: 30px;
+    }
+    .directory-label {
+      font-size: var(--text-xs);
+    }
+    .directory-footer {
+      flex-wrap: wrap;
+    }
+  }
+  @media (max-width: 420px) {
+    .draft-entry {
+      grid-template-columns: 90px 1fr;
+      gap: var(--space-4);
+    }
+    .entry-preview {
+      height: 112px;
+    }
+    .mini-ticket {
+      transform: rotate(-8deg) scale(0.8);
+    }
+    .mini-workbook strong {
+      font-size: 44px;
+    }
+    .mini-workbook i {
+      width: 19px;
+    }
+  }
+</style>

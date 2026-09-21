@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Vega Design Assignment//16-Bit Con//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:16-bit-con-2026@design-assignment.example
+DTSTAMP:20260921T120000Z
+DTSTART;VALUE=DATE:20261003
+DTEND;VALUE=DATE:20261006
+SUMMARY:16-Bit Con — Fictional event
+LOCATION:Javits Center\, New York — Vega\, Booth 630
+DESCRIPTION:Fictional convention for a design assignment.\nFind Vega at Booth 630.
+END:VEVENT
+END:VCALENDAR

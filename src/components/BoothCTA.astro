@@ -1,0 +1,138 @@
+---
+import { event } from "../design/event";
+---
+
+<section id="register" class="booth-cta wrap" aria-labelledby="booth-title">
+  <div>
+    <span class="section-marker mono">03 / FIND US ON THE FLOOR</span>
+    <h2 id="booth-title">
+      Same game.
+      <br />
+      New friends.
+    </h2>
+    <p>
+      Find Vega at Booth {event.booth}. Come for the pixels. Stay for the after
+      party.
+    </p>
+  </div>
+  <div class="booth-details">
+    <span class="mono">Your next checkpoint</span>
+    <strong>Booth {event.booth}</strong>
+    <dl>
+      <div>
+        <dt>Where</dt>
+        <dd>{event.location}</dd>
+      </div>
+      <div>
+        <dt>When</dt>
+        <dd>{event.date}</dd>
+      </div>
+      <div>
+        <dt>After party</dt>
+        <dd>6:00 PM · Booth 630</dd>
+      </div>
+    </dl>
+    <div class="booth-actions">
+      <a class="button" href="/16-bit-con.ics" download>
+        Save the dates <span aria-hidden="true">↓</span>
+      </a>
+      <button class="text-button" type="button" id="copy-booth">
+        Copy booth details
+      </button>
+    </div>
+    <p class="booth-note">
+      A fictional convention, built for this design assignment.
+    </p>
+    <span id="booth-status" role="status" class="sr-only"></span>
+  </div>
+</section>
+<script>
+  document.querySelector("#copy-booth")?.addEventListener("click", async () => {
+    const status = document.querySelector("#booth-status")!;
+    try {
+      await navigator.clipboard.writeText(
+        "16-Bit Con · October 3–5, 2026 · Javits Center, New York · Vega, Booth 630 · After party at 6:00 PM. Fictional event.",
+      );
+      status.textContent = "Booth details copied.";
+    } catch {
+      status.textContent =
+        "Copy unavailable. Booth 630, Javits Center, New York, October 3–5, 2026.";
+    }
+  });
+</script>
+<style>
+  .booth-cta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-20);
+    padding-block: var(--space-20);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .booth-cta h2 {
+    font-size: var(--text-section);
+    margin-block: var(--space-6);
+    color: var(--color-heading);
+  }
+  .booth-cta p {
+    max-width: 42ch;
+  }
+  .booth-details {
+    background: var(--color-heading);
+    color: var(--color-inverse);
+    padding: var(--space-10);
+    box-shadow: var(--shadow-float);
+  }
+  .booth-details > strong {
+    display: block;
+    font: var(--text-booth)/1 var(--font-display);
+    margin-block: var(--space-6);
+    color: var(--color-accent);
+  }
+  .booth-details dl {
+    display: grid;
+    gap: var(--space-4);
+    font-size: var(--text-sm);
+  }
+  .booth-details dl div {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: var(--space-4);
+  }
+  .booth-details dt {
+    opacity: 0.75;
+  }
+  .booth-details dd {
+    margin: 0;
+  }
+  .booth-actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-top: var(--space-8);
+    align-items: center;
+  }
+  .text-button {
+    background: transparent;
+    border: 0;
+    color: inherit;
+    min-height: var(--target-min);
+    padding: var(--space-2);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-size: var(--text-sm);
+  }
+  .booth-details .booth-note {
+    font-size: var(--text-xs);
+    margin-top: var(--space-6);
+  }
+  @media (max-width: 760px) {
+    .booth-cta {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      padding-block: var(--space-12);
+    }
+    .booth-details {
+      padding: var(--space-6);
+    }
+  }
+</style>

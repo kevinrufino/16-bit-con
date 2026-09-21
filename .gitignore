@@ -1,0 +1,14 @@
+node_modules
+dist/
+.astro/
+.vercel/
+.env*
+.DS_Store
+.vercel
+
+# Blender autosave backups
+*.blend1
+
+# Python tool caches
+__pycache__/
+*.py[cod]

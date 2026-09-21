@@ -1,0 +1,470 @@
+[
+  {
+    "name": "overview studies",
+    "images": [
+      {
+        "name": "schedule lineup",
+        "src": "/drafts/explorations/schedule-lineup.png"
+      },
+      {
+        "name": "schedule overview",
+        "src": "/drafts/explorations/schedule-overview.gif"
+      }
+    ]
+  },
+  {
+    "name": "mole arcade",
+    "images": [
+      {
+        "name": "animation",
+        "src": "/drafts/explorations/mole-arcade/animation.gif"
+      },
+      {
+        "name": "concept",
+        "src": "/drafts/explorations/mole-arcade/concept.png"
+      },
+      {
+        "name": "contact sheet",
+        "src": "/drafts/explorations/mole-arcade/contact-sheet.png"
+      },
+      {
+        "name": "first frame",
+        "src": "/drafts/explorations/mole-arcade/first-frame.png"
+      },
+      {
+        "name": "frame 00",
+        "src": "/drafts/explorations/mole-arcade/frame-00.png"
+      },
+      {
+        "name": "frame 01",
+        "src": "/drafts/explorations/mole-arcade/frame-01.png"
+      },
+      {
+        "name": "frame 02",
+        "src": "/drafts/explorations/mole-arcade/frame-02.png"
+      },
+      {
+        "name": "frame 03",
+        "src": "/drafts/explorations/mole-arcade/frame-03.png"
+      },
+      {
+        "name": "frame 04",
+        "src": "/drafts/explorations/mole-arcade/frame-04.png"
+      },
+      {
+        "name": "frame 05",
+        "src": "/drafts/explorations/mole-arcade/frame-05.png"
+      },
+      {
+        "name": "frame 06",
+        "src": "/drafts/explorations/mole-arcade/frame-06.png"
+      },
+      {
+        "name": "frame 07",
+        "src": "/drafts/explorations/mole-arcade/frame-07.png"
+      },
+      {
+        "name": "frame 08",
+        "src": "/drafts/explorations/mole-arcade/frame-08.png"
+      },
+      {
+        "name": "input 128",
+        "src": "/drafts/explorations/mole-arcade/input-128.png"
+      },
+      {
+        "name": "spritesheet",
+        "src": "/drafts/explorations/mole-arcade/spritesheet.png"
+      }
+    ]
+  },
+  {
+    "name": "mole coffee",
+    "images": [
+      {
+        "name": "concept",
+        "src": "/drafts/explorations/mole-coffee/concept.png"
+      },
+      {
+        "name": "contact sheet",
+        "src": "/drafts/explorations/mole-coffee/contact-sheet.png"
+      },
+      {
+        "name": "first frame",
+        "src": "/drafts/explorations/mole-coffee/first-frame.png"
+      },
+      {
+        "name": "frame 00",
+        "src": "/drafts/explorations/mole-coffee/frame-00.png"
+      },
+      {
+        "name": "frame 01",
+        "src": "/drafts/explorations/mole-coffee/frame-01.png"
+      },
+      {
+        "name": "frame 02",
+        "src": "/drafts/explorations/mole-coffee/frame-02.png"
+      },
+      {
+        "name": "frame 03",
+        "src": "/drafts/explorations/mole-coffee/frame-03.png"
+      },
+      {
+        "name": "frame 04",
+        "src": "/drafts/explorations/mole-coffee/frame-04.png"
+      },
+      {
+        "name": "frame 05",
+        "src": "/drafts/explorations/mole-coffee/frame-05.png"
+      },
+      {
+        "name": "frame 06",
+        "src": "/drafts/explorations/mole-coffee/frame-06.png"
+      },
+      {
+        "name": "frame 07",
+        "src": "/drafts/explorations/mole-coffee/frame-07.png"
+      },
+      {
+        "name": "frame 08",
+        "src": "/drafts/explorations/mole-coffee/frame-08.png"
+      },
+      {
+        "name": "input 128",
+        "src": "/drafts/explorations/mole-coffee/input-128.png"
+      },
+      {
+        "name": "mole coffee",
+        "src": "/drafts/explorations/mole-coffee/mole-coffee.gif"
+      },
+      {
+        "name": "spritesheet",
+        "src": "/drafts/explorations/mole-coffee/spritesheet.png"
+      }
+    ]
+  },
+  {
+    "name": "mole demo",
+    "images": [
+      {
+        "name": "animation",
+        "src": "/drafts/explorations/mole-demo/animation.gif"
+      },
+      {
+        "name": "concept",
+        "src": "/drafts/explorations/mole-demo/concept.png"
+      },
+      {
+        "name": "contact sheet",
+        "src": "/drafts/explorations/mole-demo/contact-sheet.png"
+      },
+      {
+        "name": "first frame",
+        "src": "/drafts/explorations/mole-demo/first-frame.png"
+      },
+      {
+        "name": "frame 00",
+        "src": "/drafts/explorations/mole-demo/frame-00.png"
+      },
+      {
+        "name": "frame 01",
+        "src": "/drafts/explorations/mole-demo/frame-01.png"
+      },
+      {
+        "name": "frame 02",
+        "src": "/drafts/explorations/mole-demo/frame-02.png"
+      },
+      {
+        "name": "frame 03",
+        "src": "/drafts/explorations/mole-demo/frame-03.png"
+      },
+      {
+        "name": "frame 04",
+        "src": "/drafts/explorations/mole-demo/frame-04.png"
+      },
+      {
+        "name": "frame 05",
+        "src": "/drafts/explorations/mole-demo/frame-05.png"
+      },
+      {
+        "name": "frame 06",
+        "src": "/drafts/explorations/mole-demo/frame-06.png"
+      },
+      {
+        "name": "frame 07",
+        "src": "/drafts/explorations/mole-demo/frame-07.png"
+      },
+      {
+        "name": "frame 08",
+        "src": "/drafts/explorations/mole-demo/frame-08.png"
+      },
+      {
+        "name": "input 128",
+        "src": "/drafts/explorations/mole-demo/input-128.png"
+      },
+      {
+        "name": "spritesheet",
+        "src": "/drafts/explorations/mole-demo/spritesheet.png"
+      }
+    ]
+  },
+  {
+    "name": "mole keynote",
+    "images": [
+      {
+        "name": "animation",
+        "src": "/drafts/explorations/mole-keynote/animation.gif"
+      },
+      {
+        "name": "concept",
+        "src": "/drafts/explorations/mole-keynote/concept.png"
+      },
+      {
+        "name": "contact sheet",
+        "src": "/drafts/explorations/mole-keynote/contact-sheet.png"
+      },
+      {
+        "name": "first frame",
+        "src": "/drafts/explorations/mole-keynote/first-frame.png"
+      },
+      {
+        "name": "frame 00",
+        "src": "/drafts/explorations/mole-keynote/frame-00.png"
+      },
+      {
+        "name": "frame 01",
+        "src": "/drafts/explorations/mole-keynote/frame-01.png"
+      },
+      {
+        "name": "frame 02",
+        "src": "/drafts/explorations/mole-keynote/frame-02.png"
+      },
+      {
+        "name": "frame 03",
+        "src": "/drafts/explorations/mole-keynote/frame-03.png"
+      },
+      {
+        "name": "frame 04",
+        "src": "/drafts/explorations/mole-keynote/frame-04.png"
+      },
+      {
+        "name": "frame 05",
+        "src": "/drafts/explorations/mole-keynote/frame-05.png"
+      },
+      {
+        "name": "frame 06",
+        "src": "/drafts/explorations/mole-keynote/frame-06.png"
+      },
+      {
+        "name": "frame 07",
+        "src": "/drafts/explorations/mole-keynote/frame-07.png"
+      },
+      {
+        "name": "frame 08",
+        "src": "/drafts/explorations/mole-keynote/frame-08.png"
+      },
+      {
+        "name": "input 128",
+        "src": "/drafts/explorations/mole-keynote/input-128.png"
+      },
+      {
+        "name": "spritesheet",
+        "src": "/drafts/explorations/mole-keynote/spritesheet.png"
+      }
+    ]
+  },
+  {
+    "name": "mole music",
+    "images": [
+      {
+        "name": "animation",
+        "src": "/drafts/explorations/mole-music/animation.gif"
+      },
+      {
+        "name": "concept",
+        "src": "/drafts/explorations/mole-music/concept.png"
+      },
+      {
+        "name": "contact sheet",
+        "src": "/drafts/explorations/mole-music/contact-sheet.png"
+      },
+      {
+        "name": "first frame",
+        "src": "/drafts/explorations/mole-music/first-frame.png"
+      },
+      {
+        "name": "frame 00",
+        "src": "/drafts/explorations/mole-music/frame-00.png"
+      },
+      {
+        "name": "frame 01",
+        "src": "/drafts/explorations/mole-music/frame-01.png"
+      },
+      {
+        "name": "frame 02",
+        "src": "/drafts/explorations/mole-music/frame-02.png"
+      },
+      {
+        "name": "frame 03",
+        "src": "/drafts/explorations/mole-music/frame-03.png"
+      },
+      {
+        "name": "frame 04",
+        "src": "/drafts/explorations/mole-music/frame-04.png"
+      },
+      {
+        "name": "frame 05",
+        "src": "/drafts/explorations/mole-music/frame-05.png"
+      },
+      {
+        "name": "frame 06",
+        "src": "/drafts/explorations/mole-music/frame-06.png"
+      },
+      {
+        "name": "frame 07",
+        "src": "/drafts/explorations/mole-music/frame-07.png"
+      },
+      {
+        "name": "frame 08",
+        "src": "/drafts/explorations/mole-music/frame-08.png"
+      },
+      {
+        "name": "input 128",
+        "src": "/drafts/explorations/mole-music/input-128.png"
+      },
+      {
+        "name": "spritesheet",
+        "src": "/drafts/explorations/mole-music/spritesheet.png"
+      }
+    ]
+  },
+  {
+    "name": "mole panel",
+    "images": [
+      {
+        "name": "animation",
+        "src": "/drafts/explorations/mole-panel/animation.gif"
+      },
+      {
+        "name": "concept",
+        "src": "/drafts/explorations/mole-panel/concept.png"
+      },
+      {
+        "name": "contact sheet",
+        "src": "/drafts/explorations/mole-panel/contact-sheet.png"
+      },
+      {
+        "name": "first frame",
+        "src": "/drafts/explorations/mole-panel/first-frame.png"
+      },
+      {
+        "name": "frame 00",
+        "src": "/drafts/explorations/mole-panel/frame-00.png"
+      },
+      {
+        "name": "frame 01",
+        "src": "/drafts/explorations/mole-panel/frame-01.png"
+      },
+      {
+        "name": "frame 02",
+        "src": "/drafts/explorations/mole-panel/frame-02.png"
+      },
+      {
+        "name": "frame 03",
+        "src": "/drafts/explorations/mole-panel/frame-03.png"
+      },
+      {
+        "name": "frame 04",
+        "src": "/drafts/explorations/mole-panel/frame-04.png"
+      },
+      {
+        "name": "frame 05",
+        "src": "/drafts/explorations/mole-panel/frame-05.png"
+      },
+      {
+        "name": "frame 06",
+        "src": "/drafts/explorations/mole-panel/frame-06.png"
+      },
+      {
+        "name": "frame 07",
+        "src": "/drafts/explorations/mole-panel/frame-07.png"
+      },
+      {
+        "name": "frame 08",
+        "src": "/drafts/explorations/mole-panel/frame-08.png"
+      },
+      {
+        "name": "input 128",
+        "src": "/drafts/explorations/mole-panel/input-128.png"
+      },
+      {
+        "name": "spritesheet",
+        "src": "/drafts/explorations/mole-panel/spritesheet.png"
+      }
+    ]
+  },
+  {
+    "name": "mole workshop",
+    "images": [
+      {
+        "name": "animation",
+        "src": "/drafts/explorations/mole-workshop/animation.gif"
+      },
+      {
+        "name": "concept",
+        "src": "/drafts/explorations/mole-workshop/concept.png"
+      },
+      {
+        "name": "contact sheet",
+        "src": "/drafts/explorations/mole-workshop/contact-sheet.png"
+      },
+      {
+        "name": "first frame",
+        "src": "/drafts/explorations/mole-workshop/first-frame.png"
+      },
+      {
+        "name": "frame 00",
+        "src": "/drafts/explorations/mole-workshop/frame-00.png"
+      },
+      {
+        "name": "frame 01",
+        "src": "/drafts/explorations/mole-workshop/frame-01.png"
+      },
+      {
+        "name": "frame 02",
+        "src": "/drafts/explorations/mole-workshop/frame-02.png"
+      },
+      {
+        "name": "frame 03",
+        "src": "/drafts/explorations/mole-workshop/frame-03.png"
+      },
+      {
+        "name": "frame 04",
+        "src": "/drafts/explorations/mole-workshop/frame-04.png"
+      },
+      {
+        "name": "frame 05",
+        "src": "/drafts/explorations/mole-workshop/frame-05.png"
+      },
+      {
+        "name": "frame 06",
+        "src": "/drafts/explorations/mole-workshop/frame-06.png"
+      },
+      {
+        "name": "frame 07",
+        "src": "/drafts/explorations/mole-workshop/frame-07.png"
+      },
+      {
+        "name": "frame 08",
+        "src": "/drafts/explorations/mole-workshop/frame-08.png"
+      },
+      {
+        "name": "input 128",
+        "src": "/drafts/explorations/mole-workshop/input-128.png"
+      },
+      {
+        "name": "spritesheet",
+        "src": "/drafts/explorations/mole-workshop/spritesheet.png"
+      }
+    ]
+  }
+]

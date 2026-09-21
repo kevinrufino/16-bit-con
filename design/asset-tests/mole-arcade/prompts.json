@@ -1,0 +1,11 @@
+{
+  "id": "mole-arcade",
+  "time": "1 pm",
+  "title": "Grab a byte.",
+  "type": "Lunch & free play",
+  "scene": "A friendly brown mole with cyan goggles at a small forest-green tabletop arcade cabinet, one paw on the red joystick and one on the buttons, happy profile visible. Cozy wooden cafe corner, a little sandwich on a plate to one side, golden afternoon window. Mole and cabinet dominate.",
+  "motion": "The mole nudges the joystick and taps one arcade button, tiny body bob, subtle screen sparkle. Keep face, goggles, cabinet, sandwich and background unchanged.",
+  "prompt": "Edit this existing pixel-art scene for a coordinated calendar series. KEEP the main character(s) or object, clothing, face, anatomy, pixel-art style and featured activity, but COMPLETELY REPLACE the background and room/set design. NEW SETTING: A dim cozy underground arcade: deep indigo walls, cyan and magenta light strips, two blurred colorful cabinet silhouettes in the distance, a hint of checkerboard floor. Atmospheric retro evening glow. NO sunny window, bakery, plants, books or bread. Adapt lighting on subject to belong in new environment. Main subject stays large, simple, legible at 48px; crisp chunky pixels, selective dark outlines, charming Kiki's Delivery Service inspired atmosphere. Square, no text, no border. Background variation is essential; this must no longer resemble the previous coffee-shop scene.",
+  "background": "A dim cozy underground arcade: deep indigo walls, cyan and magenta light strips, two blurred colorful cabinet silhouettes in the distance, a hint of checkerboard floor. Atmospheric retro evening glow. NO sunny window, bakery, plants, books or bread.",
+  "source": "/Users/kevinrufino/.codex/generated_images/01a0c28c-e323-7b73-be9b-bb902ed6c13e/exec-d1437917-9951-43e1-b603-98b91290992c.png"
+}

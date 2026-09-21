@@ -1,0 +1,392 @@
+---
+import Layout from "../../archive/original/Layout.astro";
+import World from "../../archive/original/World.astro";
+const sessions = [
+  {
+    time: "09:00",
+    type: "Doors open",
+    title: "Boot up. Plug in. Find your people.",
+    detail: "Coffee, cartridge swaps, and first dibs on the arcade.",
+    place: "The lobby",
+  },
+  {
+    time: "10:00",
+    type: "Keynote",
+    title: "The future has a past.",
+    detail: "What the early web can teach us about building what comes next.",
+    place: "Main stage",
+  },
+  {
+    time: "11:30",
+    type: "Workshop",
+    title: "Make something in 16 pixels.",
+    detail:
+      "A hands-on pixel art session. Zero experience, infinite possibilities.",
+    place: "The lab",
+  },
+  {
+    time: "13:00",
+    type: "Intermission",
+    title: "Grab a byte.",
+    detail: "Good food, new friends, and a very serious high-score contest.",
+    place: "Arcade floor",
+  },
+  {
+    time: "14:30",
+    type: "Panel",
+    title: "Built to last. Made to play.",
+    detail:
+      "Makers on creative constraints, open technology, and joyful tools.",
+    place: "Main stage",
+  },
+  {
+    time: "16:00",
+    type: "After hours",
+    title: "One more level.",
+    detail:
+      "Chiptune sets, final boss battles, and a toast to the next generation.",
+    place: "Everywhere",
+  },
+];
+---
+
+<Layout title="Original CTA — 16-Bit Con drafts">
+  <aside class="archive-banner" aria-label="Archived design">
+    <span>ARCHIVED / ORIGINAL PIXEL STUDIO + TICKET</span>
+    <a href="/drafts">↖ All drafts</a>
+    <a href="/#register">Current passes ↗</a>
+  </aside>
+  <header class="site-header wrap">
+    <a class="brand" href="/" aria-label="Vega, 16-Bit Con home">
+      <img src="/images/vega-logo.svg" alt="Vega" width="108" height="35" />
+      <span class="brand-divider"></span>
+      <span class="mono brand-event">PRESENTS 16-BIT CON</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#about">The experience</a>
+      <a href="#schedule">The lineup</a>
+      <a href="#play">Pixel playground</a>
+    </nav>
+    <a class="button small" href="#register">
+      Get your pass <span aria-hidden="true">↗</span>
+    </a>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="event-name">
+      <div class="hero-top mono">
+        <span>
+          <i class="status-dot"></i> A GATHERING FOR THE BEAUTIFULLY CURIOUS
+        </span>
+        <span>EST. 1986 IN SPIRIT. 2026 IRL.</span>
+      </div>
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <div class="edition mono">ONE DAY. ALL THE POSSIBILITIES.</div>
+          <h1 id="event-name">
+            16-Bit
+            <br />
+            Con
+            <span class="pixel-star" aria-hidden="true">
+              ✳
+            </span>
+          </h1>
+          <p class="hero-tagline">
+            Small pixels.
+            <br />
+            Big ideas.
+          </p>
+          <p class="hero-description">
+            An ode to the tech that raised us.
+            <br />A gathering for what comes next.
+          </p>
+          <a class="button" href="#register">
+            Get your pass <span aria-hidden="true">↗</span>
+          </a>
+          <div class="hero-meta">
+            <span>
+              <b>OCT 24, 2026</b>Saturday, 9am–6pm
+            </span>
+            <span>
+              <b>BROOKLYN, NY</b>Industry City, Building 5
+            </span>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="art-label mono">
+            <span class="tiny-square"></span> NEW WORLD LOADING...
+          </div>
+          <World />
+          <div class="art-caption mono">
+            <span>LOW RESOLUTION. HIGH EXPECTATIONS.</span>
+            <span>↙ SCROLL TO EXPLORE</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-bottom mono">
+        <span>TECH TALKS</span>
+        <b>✳</b>
+        <span>HANDS-ON WORKSHOPS</span>
+        <b>✳</b>
+        <span>ARCADE CLASSICS</span>
+        <b>✳</b>
+        <span>FUTURE FRIENDS</span>
+        <b>✳</b>
+        <span>GOOD OLD-FASHIONED CURIOSITY</span>
+      </div>
+    </section>
+    <section id="about" class="about wrap section">
+      <div class="section-marker mono">01 / THE EXPERIENCE</div>
+      <div class="about-grid">
+        <h2>
+          A little nostalgia.
+          <br />A lot of possibility.
+        </h2>
+        <div>
+          <p class="large-copy">
+            Remember when technology felt like an invitation to play? We’re
+            bringing that feeling back.
+          </p>
+          <p>
+            Meet the builders, tinkerers, and curious minds turning yesterday’s
+            inspiration into tomorrow’s ideas. Come for the talks. Stay for the
+            unexpected connections.
+          </p>
+          <div class="stats">
+            <div>
+              <strong>01</strong>
+              <span>
+                day to disconnect
+                <br />
+                and reconnect
+              </span>
+            </div>
+            <div>
+              <strong>06</strong>
+              <span>
+                sessions to spark
+                <br />
+                something new
+              </span>
+            </div>
+            <div>
+              <strong>∞</strong>
+              <span>
+                reasons to
+                <br />
+                press start
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="schedule" class="schedule section">
+      <div class="wrap">
+        <div class="section-marker mono">02 / THE LINEUP</div>
+        <div class="section-heading">
+          <h2>
+            A day worth
+            <br />
+            saving.
+          </h2>
+          <div>
+            <p>
+              No loading screens. Just good things,
+              <br />
+              one after another.
+            </p>
+            <span class="mono schedule-date">
+              SATURDAY, OCTOBER 24 / ALL TIMES EDT
+            </span>
+          </div>
+        </div>
+        <div class="timeline">
+          {sessions.map((s, i) => (
+            <details class="session" open={i === 0}>
+              <summary>
+                <span class="session-time mono">{s.time}</span>
+                <span class="session-title">{s.title}</span>
+                <span class="session-type mono">{s.type}</span>
+                <span class="plus" aria-hidden="true">
+                  +
+                </span>
+              </summary>
+              <div class="session-detail">
+                <p>{s.detail}</p>
+                <span class="mono">↳ {s.place}</span>
+              </div>
+            </details>
+          ))}
+        </div>
+        <p class="schedule-note mono">
+          COME AS YOU ARE. FOLLOW YOUR CURIOSITY.
+        </p>
+      </div>
+    </section>
+    <section id="play" class="play section wrap">
+      <div class="section-marker mono">03 / YOUR TURN</div>
+      <div class="play-layout">
+        <div>
+          <span class="pill mono">A LITTLE SIDE QUEST</span>
+          <h2>
+            Leave your
+            <br />
+            pixel on
+            <br />
+            the world.
+          </h2>
+          <p>
+            Big ideas start small. Pick a color and make your mark on a 16 × 16
+            canvas. A tiny masterpiece, entirely yours.
+          </p>
+          <p class="play-hint mono">
+            CLICK OR DRAG TO DRAW.
+            <br />
+            ARROW KEYS TO MOVE. SPACE TO PAINT.
+          </p>
+        </div>
+        <div class="paint-window">
+          <div class="window-bar mono">
+            <span>UNTITLED_001.PXL</span>
+            <span aria-hidden="true">− □ ×</span>
+          </div>
+          <div class="paint-body">
+            <div
+              id="pixel-grid"
+              class="pixel-grid"
+              role="grid"
+              aria-label="16 by 16 pixel art canvas"
+            >
+              {Array.from({ length: 16 }, (_, r) => (
+                <div role="row">
+                  {Array.from({ length: 16 }, (_, c) => (
+                    <button
+                      type="button"
+                      role="gridcell"
+                      tabindex={r === 0 && c === 0 ? 0 : -1}
+                      data-pixel={r * 16 + c}
+                      aria-label={`Row ${r + 1}, column ${c + 1}, blank`}
+                    ></button>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <div class="paint-toolbar">
+              <div class="swatches" role="group" aria-label="Paint color">
+                {[
+                  { c: "#0d5500", n: "Leaf green" },
+                  { c: "#ffd11b", n: "Florets yellow" },
+                  { c: "#8dcaff", n: "Sky blue" },
+                  { c: "#ff7850", n: "Coral" },
+                  { c: "#001400", n: "Deep green" },
+                  { c: "#fffaeb", n: "Eraser" },
+                ].map((s, i) => (
+                  <button
+                    class="swatch"
+                    type="button"
+                    data-color={s.c}
+                    aria-label={s.n}
+                    aria-pressed={i === 0 ? "true" : "false"}
+                    style={`--swatch:${s.c}`}
+                  ></button>
+                ))}
+              </div>
+              <button id="clear-art" class="text-button" type="button">
+                Clear
+              </button>
+            </div>
+            <div class="paint-footer mono">
+              <span id="paint-status" role="status">
+                256 PIXELS. MAKE THEM COUNT.
+              </span>
+              <button id="save-art" class="text-button" type="button">
+                Save PNG ↓
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="register" class="register wrap">
+      <div class="ticket-main">
+        <span class="mono">YOUR NEXT GREAT MEMORY STARTS HERE.</span>
+        <h2>
+          Ready,
+          <br />
+          player you?
+        </h2>
+        <p>
+          One pass. The whole experience.
+          <br />
+          Bring your curiosity. We’ll handle the rest.
+        </p>
+        <button class="button dark" data-open-pass type="button">
+          Get your free pass <span aria-hidden="true">↗</span>
+        </button>
+        <span class="ticket-note mono">NO COINS REQUIRED.</span>
+      </div>
+      <div class="ticket-stub">
+        <div class="mono">ADMIT ONE / ALL ACCESS</div>
+        <div class="stub-title">
+          16-Bit
+          <br />
+          Con
+        </div>
+        <div class="mono">
+          OCT 24, 2026
+          <br />
+          BROOKLYN, NY
+        </div>
+        <div class="barcode" aria-hidden="true"></div>
+        <span class="mono">000016 — GOOD TIMES AHEAD</span>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap">
+    <a href="https://vega.io" aria-label="Visit Vega">
+      <img src="/images/vega-logo.svg" alt="Vega" width="96" height="32" />
+    </a>
+    <span>Built for the love of what’s next.</span>
+    <a href="/drafts">Behind the pixels ↗</a>
+    <span class="mono">A FICTIONAL EVENT. A REAL GOOD IDEA.</span>
+  </footer>
+  <dialog id="pass-dialog" aria-labelledby="pass-title">
+    <button class="close-dialog" aria-label="Close pass dialog" type="button">
+      ×
+    </button>
+    <span class="mono">16-BIT CON / PLAYER SELECT</span>
+    <h2 id="pass-title">Make it yours.</h2>
+    <p>
+      This is a fictional convention. Create a souvenir pass to keep the good
+      pixels going.
+    </p>
+    <form id="pass-form">
+      <label for="player-name">Your player name</label>
+      <input
+        id="player-name"
+        name="player"
+        autocomplete="nickname"
+        placeholder="Your name or alias"
+        maxlength="30"
+        required
+      />
+      <button class="button dark" type="submit">
+        Create my souvenir pass ↗
+      </button>
+    </form>
+    <div id="pass-result" hidden>
+      <p id="pass-message" role="status"></p>
+      <button id="download-pass" class="button dark" type="button">
+        Download your pass ↓
+      </button>
+    </div>
+  </dialog>
+  <script>
+    import "../../archive/original/interactions";
+  </script>
+</Layout>
+
+<style>
+  .archive-banner { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; padding: 16px 24px; background: #001400; color: #fffaeb; font: 12px/1.5 monospace; }
+  .archive-banner a { color: #ffd11b; text-decoration: underline; text-underline-offset: 4px; }
+</style>

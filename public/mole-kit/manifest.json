@@ -1,0 +1,310 @@
+{
+  "characters": [
+    {
+      "id": "classic",
+      "file": "classic.glb",
+      "vertices": 3204,
+      "triangles": 6244,
+      "eyewear": [
+        {
+          "id": "goggles",
+          "file": "classic.glb",
+          "vertices": 3204,
+          "triangles": 6244
+        },
+        {
+          "id": "square",
+          "file": "eyewear/classic-square.glb",
+          "vertices": 3028,
+          "triangles": 5916
+        },
+        {
+          "id": "round",
+          "file": "eyewear/classic-round.glb",
+          "vertices": 2996,
+          "triangles": 5900
+        },
+        {
+          "id": "visor",
+          "file": "eyewear/classic-visor.glb",
+          "vertices": 2980,
+          "triangles": 5844
+        },
+        {
+          "id": "bare",
+          "file": "eyewear/classic-bare.glb",
+          "vertices": 2876,
+          "triangles": 5672
+        }
+      ]
+    },
+    {
+      "id": "propeller",
+      "file": "propeller.glb",
+      "vertices": 3688,
+      "triangles": 7184,
+      "eyewear": [
+        {
+          "id": "goggles",
+          "file": "propeller.glb",
+          "vertices": 3688,
+          "triangles": 7184
+        },
+        {
+          "id": "square",
+          "file": "eyewear/propeller-square.glb",
+          "vertices": 3512,
+          "triangles": 6856
+        },
+        {
+          "id": "round",
+          "file": "eyewear/propeller-round.glb",
+          "vertices": 3480,
+          "triangles": 6840
+        },
+        {
+          "id": "visor",
+          "file": "eyewear/propeller-visor.glb",
+          "vertices": 3464,
+          "triangles": 6784
+        },
+        {
+          "id": "bare",
+          "file": "eyewear/propeller-bare.glb",
+          "vertices": 3360,
+          "triangles": 6612
+        }
+      ]
+    },
+    {
+      "id": "superfan",
+      "file": "superfan.glb",
+      "vertices": 4374,
+      "triangles": 8480,
+      "eyewear": [
+        {
+          "id": "goggles",
+          "file": "superfan.glb",
+          "vertices": 4374,
+          "triangles": 8480
+        },
+        {
+          "id": "square",
+          "file": "eyewear/superfan-square.glb",
+          "vertices": 4198,
+          "triangles": 8152
+        },
+        {
+          "id": "round",
+          "file": "eyewear/superfan-round.glb",
+          "vertices": 4166,
+          "triangles": 8136
+        },
+        {
+          "id": "visor",
+          "file": "eyewear/superfan-visor.glb",
+          "vertices": 4150,
+          "triangles": 8080
+        },
+        {
+          "id": "bare",
+          "file": "eyewear/superfan-bare.glb",
+          "vertices": 4046,
+          "triangles": 7908
+        }
+      ]
+    },
+    {
+      "id": "crew",
+      "file": "crew.glb",
+      "vertices": 4158,
+      "triangles": 8112,
+      "eyewear": [
+        {
+          "id": "goggles",
+          "file": "crew.glb",
+          "vertices": 4158,
+          "triangles": 8112
+        },
+        {
+          "id": "square",
+          "file": "eyewear/crew-square.glb",
+          "vertices": 3982,
+          "triangles": 7784
+        },
+        {
+          "id": "round",
+          "file": "eyewear/crew-round.glb",
+          "vertices": 3950,
+          "triangles": 7768
+        },
+        {
+          "id": "visor",
+          "file": "eyewear/crew-visor.glb",
+          "vertices": 3934,
+          "triangles": 7712
+        },
+        {
+          "id": "bare",
+          "file": "eyewear/crew-bare.glb",
+          "vertices": 3830,
+          "triangles": 7540
+        }
+      ]
+    },
+    {
+      "id": "gamer",
+      "file": "gamer.glb",
+      "vertices": 4174,
+      "triangles": 8136,
+      "eyewear": [
+        {
+          "id": "goggles",
+          "file": "gamer.glb",
+          "vertices": 4174,
+          "triangles": 8136
+        },
+        {
+          "id": "square",
+          "file": "eyewear/gamer-square.glb",
+          "vertices": 3998,
+          "triangles": 7808
+        },
+        {
+          "id": "round",
+          "file": "eyewear/gamer-round.glb",
+          "vertices": 3966,
+          "triangles": 7792
+        },
+        {
+          "id": "visor",
+          "file": "eyewear/gamer-visor.glb",
+          "vertices": 3950,
+          "triangles": 7736
+        },
+        {
+          "id": "bare",
+          "file": "eyewear/gamer-bare.glb",
+          "vertices": 3846,
+          "triangles": 7564
+        }
+      ]
+    },
+    {
+      "id": "artist",
+      "file": "artist.glb",
+      "vertices": 3738,
+      "triangles": 7276,
+      "eyewear": [
+        {
+          "id": "goggles",
+          "file": "artist.glb",
+          "vertices": 3738,
+          "triangles": 7276
+        },
+        {
+          "id": "square",
+          "file": "eyewear/artist-square.glb",
+          "vertices": 3562,
+          "triangles": 6948
+        },
+        {
+          "id": "round",
+          "file": "eyewear/artist-round.glb",
+          "vertices": 3530,
+          "triangles": 6932
+        },
+        {
+          "id": "visor",
+          "file": "eyewear/artist-visor.glb",
+          "vertices": 3514,
+          "triangles": 6876
+        },
+        {
+          "id": "bare",
+          "file": "eyewear/artist-bare.glb",
+          "vertices": 3410,
+          "triangles": 6704
+        }
+      ]
+    }
+  ],
+  "animations": [
+    {
+      "name": "ReferencePose",
+      "duration": 1.0,
+      "loop": true
+    },
+    {
+      "name": "Idle",
+      "duration": 3.0,
+      "loop": true
+    },
+    {
+      "name": "Walk",
+      "duration": 1.0,
+      "loop": true
+    },
+    {
+      "name": "SitDown",
+      "duration": 1.25,
+      "loop": false
+    },
+    {
+      "name": "Sitting",
+      "duration": 3.0,
+      "loop": true
+    },
+    {
+      "name": "Sleep",
+      "duration": 4.0,
+      "loop": true
+    },
+    {
+      "name": "Chat",
+      "duration": 3.0,
+      "loop": true
+    },
+    {
+      "name": "Wave",
+      "duration": 2.0,
+      "loop": true
+    },
+    {
+      "name": "Cheer",
+      "duration": 2.0,
+      "loop": true
+    },
+    {
+      "name": "Dance",
+      "duration": 2.0,
+      "loop": true
+    },
+    {
+      "name": "Point",
+      "duration": 2.5,
+      "loop": true
+    },
+    {
+      "name": "InspectBadge",
+      "duration": 3.0,
+      "loop": true
+    },
+    {
+      "name": "Clap",
+      "duration": 1.5,
+      "loop": true
+    }
+  ],
+  "eyewear": [
+    "goggles",
+    "square",
+    "round",
+    "visor",
+    "bare"
+  ],
+  "defaultEyewear": "goggles",
+  "fps": 24,
+  "forward": "+Z (glTF), -Y (Blender)",
+  "rig": "8 bones; blended body/head weights, rigid limbs; in-place locomotion"
+}

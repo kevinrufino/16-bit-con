@@ -1,0 +1,68 @@
+[
+  {
+    "id": "mole-keynote",
+    "time": "10 am",
+    "title": "The future has a past.",
+    "type": "Keynote",
+    "scene": "OBJECT STILL LIFE, NO living character: a chunky cream vintage CRT computer and keyboard on a wooden desk. The green monochrome monitor shows one tiny simple mole sprite silhouette, a prompt chevron and a few abstract terminal bars (no readable text). A mole-paw-shaped wooden coaster and little potted daisy beside it. Cozy wood study with morning light. CRT dominates 75% of square composition.",
+    "motion": "Fixed camera, stationary study and computer. The tiny mole sprite on the green screen gently takes two steps in place, terminal cursor blinks, small green power indicator pulses. All movement confined to the screen and light.",
+    "prompt": "Edit this existing pixel-art scene for a coordinated calendar series. KEEP the main character(s) or object, clothing, face, anatomy, pixel-art style and featured activity, but COMPLETELY REPLACE the background and room/set design. NEW SETTING: An old university lecture hall: burgundy velvet curtains, a dark chalkboard with one small simple mole diagram, rows of wooden seats receding into shadow. Computer sits on a lectern foreground. Cool slate and burgundy with warm amber spotlight. NO bakery, no flowers, no town window, no bookcase. Adapt lighting on subject to belong in new environment. Main subject stays large, simple, legible at 48px; crisp chunky pixels, selective dark outlines, charming Kiki's Delivery Service inspired atmosphere. Square, no text, no border. Background variation is essential; this must no longer resemble the previous coffee-shop scene.",
+    "background": "An old university lecture hall: burgundy velvet curtains, a dark chalkboard with one small simple mole diagram, rows of wooden seats receding into shadow. Computer sits on a lectern foreground. Cool slate and burgundy with warm amber spotlight. NO bakery, no flowers, no town window, no bookcase.",
+    "source": "/Users/kevinrufino/.codex/generated_images/01a0c28c-e323-7b73-be9b-bb902ed6c13e/exec-9eb2a5ae-ef30-4203-8d2a-821cf85d15b0.png"
+  },
+  {
+    "id": "mole-workshop",
+    "time": "11 am",
+    "title": "Think in tiny squares.",
+    "type": "Pixel workshop",
+    "scene": "A DIFFERENT MOLE: fluffy warm ivory/cream fur, soft pink long mole nose, tiny dark eyes, NO goggles or spectacles, sage-green paint-stained artist apron and a small olive beret. It holds a brush beside a tabletop easel showing a simple yellow-centered white daisy. Cozy art workshop, wooden table and two paint pots. Large waist-up portrait. Must read as a mole, no visible large mouse ears.",
+    "motion": "The cream-furred mole in green apron gently dabs its brush against the daisy canvas then returns, subtle breathing. Preserve ivory fur, beret, apron, small eyes and pink nose. No goggles appear. Background and easel remain still.",
+    "prompt": "Edit this existing pixel-art scene for a coordinated calendar series. KEEP the main character(s) or object, clothing, face, anatomy, pixel-art style and featured activity, but COMPLETELY REPLACE the background and room/set design. NEW SETTING: A glass-roof greenhouse art studio: airy pale sky blue triangular roof panes, climbing ivy, fern silhouettes and terracotta plant pots. Bright diffuse mint-green daylight. NO bakery shelves, no village window, no repeating cream plaster wall. Adapt lighting on subject to belong in new environment. Main subject stays large, simple, legible at 48px; crisp chunky pixels, selective dark outlines, charming Kiki's Delivery Service inspired atmosphere. Square, no text, no border. Background variation is essential; this must no longer resemble the previous coffee-shop scene.",
+    "background": "A glass-roof greenhouse art studio: airy pale sky blue triangular roof panes, climbing ivy, fern silhouettes and terracotta plant pots. Bright diffuse mint-green daylight. NO bakery shelves, no village window, no repeating cream plaster wall.",
+    "source": "/Users/kevinrufino/.codex/generated_images/01a0c28c-e323-7b73-be9b-bb902ed6c13e/exec-3d794c1a-3103-4b62-87e6-380dfe99bdcb.png"
+  },
+  {
+    "id": "mole-arcade",
+    "time": "1 pm",
+    "title": "Grab a byte.",
+    "type": "Lunch & free play",
+    "scene": "A friendly brown mole with cyan goggles at a small forest-green tabletop arcade cabinet, one paw on the red joystick and one on the buttons, happy profile visible. Cozy wooden cafe corner, a little sandwich on a plate to one side, golden afternoon window. Mole and cabinet dominate.",
+    "motion": "The mole nudges the joystick and taps one arcade button, tiny body bob, subtle screen sparkle. Keep face, goggles, cabinet, sandwich and background unchanged.",
+    "prompt": "Edit this existing pixel-art scene for a coordinated calendar series. KEEP the main character(s) or object, clothing, face, anatomy, pixel-art style and featured activity, but COMPLETELY REPLACE the background and room/set design. NEW SETTING: A dim cozy underground arcade: deep indigo walls, cyan and magenta light strips, two blurred colorful cabinet silhouettes in the distance, a hint of checkerboard floor. Atmospheric retro evening glow. NO sunny window, bakery, plants, books or bread. Adapt lighting on subject to belong in new environment. Main subject stays large, simple, legible at 48px; crisp chunky pixels, selective dark outlines, charming Kiki's Delivery Service inspired atmosphere. Square, no text, no border. Background variation is essential; this must no longer resemble the previous coffee-shop scene.",
+    "background": "A dim cozy underground arcade: deep indigo walls, cyan and magenta light strips, two blurred colorful cabinet silhouettes in the distance, a hint of checkerboard floor. Atmospheric retro evening glow. NO sunny window, bakery, plants, books or bread.",
+    "source": "/Users/kevinrufino/.codex/generated_images/01a0c28c-e323-7b73-be9b-bb902ed6c13e/exec-d1437917-9951-43e1-b603-98b91290992c.png"
+  },
+  {
+    "id": "mole-panel",
+    "time": "2 pm",
+    "title": "Built to last. Made to play.",
+    "type": "Makers panel",
+    "scene": "Two friendly round brown moles at a little wooden discussion table in a cozy convention room, the main mole wears bright cyan rectangular goggles and the other wears small round amber spectacles. One small cream microphone on the table. Both faces large and readable, warm sage curtain and golden window backdrop, gentle conversational mood.",
+    "motion": "The cyan-goggled mole makes a tiny talking paw gesture while the other mole nods gently, then both settle back. Keep mouths subtle, microphone and background still. No speech bubbles or text.",
+    "prompt": "Edit this existing pixel-art scene for a coordinated calendar series. KEEP the main character(s) or object, clothing, face, anatomy, pixel-art style and featured activity, but COMPLETELY REPLACE the background and room/set design. NEW SETTING: An outdoor garden stage: mossy low stone wall, leafy tree canopy, paper bunting between branches, blue open sky and sun-dappled light. Their table is a rustic outdoor picnic table. NO enclosed room, windows, bakery, bookshelves or curtains. Adapt lighting on subject to belong in new environment. Main subject stays large, simple, legible at 48px; crisp chunky pixels, selective dark outlines, charming Kiki's Delivery Service inspired atmosphere. Square, no text, no border. Background variation is essential; this must no longer resemble the previous coffee-shop scene.",
+    "background": "An outdoor garden stage: mossy low stone wall, leafy tree canopy, paper bunting between branches, blue open sky and sun-dappled light. Their table is a rustic outdoor picnic table. NO enclosed room, windows, bakery, bookshelves or curtains.",
+    "source": "/Users/kevinrufino/.codex/generated_images/01a0c28c-e323-7b73-be9b-bb902ed6c13e/exec-a636f9a3-376d-4541-8216-063def7aa930.png"
+  },
+  {
+    "id": "mole-demo",
+    "time": "3 pm",
+    "title": "Show your strange little thing.",
+    "type": "Open demo",
+    "scene": "OBJECT STILL LIFE, NO living character: an adorable homemade MOLE-SHAPED ROBOT on a wooden inventor's workbench. Squat rounded brass and cream tin body, pointed conical pink metal snout, two tiny blue light-up eyes, broad little shovel paws, rivets and one stubby antenna. A small red push button on its back. A screwdriver and simple mole robot sketch on paper nearby. Warm honey afternoon workshop. Robot dominates 75% of image, clear cute mole silhouette.",
+    "motion": "The tiny mole-shaped robot's blue eyes blink, pink metal nose twitches once, one shovel paw gives a tiny wave and returns. Body stays planted, no walking. Background, tools and paper stay fixed.",
+    "prompt": "Edit this existing pixel-art scene for a coordinated calendar series. KEEP the main character(s) or object, clothing, face, anatomy, pixel-art style and featured activity, but COMPLETELY REPLACE the background and room/set design. NEW SETTING: A cluttered basement maker workshop: blue-gray stone arch walls, exposed copper pipes, suspended warm work lamp, tool pegboard, shelves of small spare gears and coils. Robot on a dark rough workbench. NO town window, plants, bakery or sunny cream wall. Adapt lighting on subject to belong in new environment. Main subject stays large, simple, legible at 48px; crisp chunky pixels, selective dark outlines, charming Kiki's Delivery Service inspired atmosphere. Square, no text, no border. Background variation is essential; this must no longer resemble the previous coffee-shop scene.",
+    "background": "A cluttered basement maker workshop: blue-gray stone arch walls, exposed copper pipes, suspended warm work lamp, tool pegboard, shelves of small spare gears and coils. Robot on a dark rough workbench. NO town window, plants, bakery or sunny cream wall.",
+    "source": "/Users/kevinrufino/.codex/generated_images/01a0c28c-e323-7b73-be9b-bb902ed6c13e/exec-06d72477-0364-414d-8478-7061dbff065a.png"
+  },
+  {
+    "id": "mole-music",
+    "time": "4 pm",
+    "title": "One more level.",
+    "type": "Chiptune send-off",
+    "scene": "A DIFFERENT MOLE: round charcoal-gray fur, small warm brown muzzle, pink mole nose, tiny friendly dark eyes, NO goggles or glasses, a bright rust-red knitted scarf. Plays a short cream keyboard between two small forest-green speakers. Cozy twilight wood music nook, amber lamp and lavender-blue window with one star. Close-up waist-up composition, distinctive friendly mole face with no large mouse ears.",
+    "motion": "The charcoal-gray mole wearing red scarf gently bobs to the music while its paws tap the little keyboard, speaker centers pulse subtly. Keep face, tiny eyes, scarf, keyboard and background stable. No glasses or goggles appear.",
+    "prompt": "Edit this existing pixel-art scene for a coordinated calendar series. KEEP the main character(s) or object, clothing, face, anatomy, pixel-art style and featured activity, but COMPLETELY REPLACE the background and room/set design. NEW SETTING: An open rooftop performance at dusk: terracotta roof edge, distant coastal-town rooftops, peach-to-lavender evening sky, one crescent moon, small strand of warm festoon bulbs overhead. Keyboard on a simple outdoor table. NO interior, window frame, bakery, shelves or plants. Adapt lighting on subject to belong in new environment. Main subject stays large, simple, legible at 48px; crisp chunky pixels, selective dark outlines, charming Kiki's Delivery Service inspired atmosphere. Square, no text, no border. Background variation is essential; this must no longer resemble the previous coffee-shop scene.",
+    "background": "An open rooftop performance at dusk: terracotta roof edge, distant coastal-town rooftops, peach-to-lavender evening sky, one crescent moon, small strand of warm festoon bulbs overhead. Keyboard on a simple outdoor table. NO interior, window frame, bakery, shelves or plants.",
+    "source": "/Users/kevinrufino/.codex/generated_images/01a0c28c-e323-7b73-be9b-bb902ed6c13e/exec-e73ccbb0-a5e7-4cda-9ff8-cd42df34372d.png"
+  }
+]
