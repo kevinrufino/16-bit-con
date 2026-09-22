@@ -22,7 +22,7 @@ async function boot() {
   const $ = (id) => document.getElementById(id);
   const media = matchMedia("(prefers-reduced-motion: reduce)");
   // Fixed population for the session. Never allocate new attendees in the loop.
-  const count = 20,
+  const count = 30,
     spacing = QUEUE_LENGTH / count;
   const renderer = new THREE.WebGLRenderer({
     antialias: false,
@@ -38,6 +38,8 @@ async function boot() {
   scene.background = null;
   renderer.setClearColor(0x000000, 0);
   const camera = new THREE.OrthographicCamera(-12, 12, 5, -5, 0.1, 80);
+  // Fraction of the queue that runs off the right edge of the frame.
+  const OFF_SCREEN = 0.4;
   camera.position.set(-8, 10.5, 23);
   camera.lookAt(-0.6, 1.8, 0);
   const pixel = new PixelOutlineRenderer(renderer, scene, camera);
@@ -60,8 +62,17 @@ async function boot() {
   });
   const moleMaterial = toon.clone();
   moleMaterial.clippingPlanes = [groundClip];
-  scene.add(new THREE.HemisphereLight(palette["color-surface"], palette["color-illustration-shadow"], 1.25));
-  const sun = new THREE.DirectionalLight(palette["color-illustration-light"], 2.4);
+  scene.add(
+    new THREE.HemisphereLight(
+      palette["color-surface"],
+      palette["color-illustration-shadow"],
+      1.25,
+    ),
+  );
+  const sun = new THREE.DirectionalLight(
+    palette["color-illustration-light"],
+    2.4,
+  );
   sun.position.set(-5, 12, 8);
   scene.add(sun);
 
@@ -100,8 +111,12 @@ async function boot() {
     );
   }
   // Rope dividers terminate before each U-turn, leaving a continuous walking path.
+  // One divider per boundary between rows, stopping short of whichever end the
+  // U-turn wraps so the walking path stays open.
   for (const [z, left, right] of [
-    [-3.3, -7.6, 7],
+    [-8.4, -1.1, 7.6],
+    [-6.0, -4.6, 6.5],
+    [-3.6, -3.1, 7.6],
     [-1.2, -7.6, 6.5],
     [1.2, -6.5, 7.6],
     [3.3, -7, 7.6],
@@ -117,7 +132,10 @@ async function boot() {
     }
     post(right, z);
   }
+  // Rope arcs wrapping each bend, so the barrier reads as one continuous run.
   for (const [cx, cz, sign] of [
+    [7, -6.0, 1],
+    [-4, -3.6, -1],
     [7, -1.2, 1],
     [-7, 1.2, -1],
   ]) {
@@ -138,16 +156,28 @@ async function boot() {
   const railGeometry = mergeGeometries(rails, false);
   rails.forEach((g) => g.dispose());
   scene.add(new THREE.Mesh(railGeometry, toon));
-  const names = ["classic", "propeller", "superfan", "gamer", "artist", "crew"];
+  // Every attendee used to wear the same goggles because each character's base
+  // .glb is its goggles variant. The kit ships square/round/visor/bare cuts of
+  // the same rig, so the lineup picks a different pair per role. The last two
+  // are the younger fans: same rig, noticeably smaller.
+  const roles = [
+    { file: "classic.glb", size: 1 },
+    { file: "eyewear/propeller-visor.glb", size: 1 },
+    { file: "eyewear/superfan-round.glb", size: 1 },
+    { file: "eyewear/gamer-square.glb", size: 1 },
+    { file: "eyewear/artist-bare.glb", size: 1 },
+    { file: "eyewear/crew-round.glb", size: 1 },
+    { file: "eyewear/classic-bare.glb", size: 0.76 },
+    { file: "eyewear/gamer-visor.glb", size: 0.72 },
+  ];
   const sources = await Promise.all(
-    names.map((name) =>
-      new GLTFLoader().loadAsync("/mole-kit/" + name + ".glb"),
-    ),
+    roles.map((role) => new GLTFLoader().loadAsync("/mole-kit/" + role.file)),
   );
   const templates = sources.map(prepareSkin);
   const actors = [];
   for (let i = 0; i < count; i++) {
-    const skin = createSkin(templates[i % 6], moleMaterial);
+    const role = roles[i % roles.length];
+    const skin = createSkin(templates[i % roles.length], moleMaterial);
     const anchor = skin.root;
     scene.add(anchor);
     const p = queuePoint((i + 0.25) * spacing);
@@ -160,7 +190,7 @@ async function boot() {
       celebrateStart: -100,
       celebrateUntil: 0,
       exitAge: null,
-      gap: 1.2 + Math.random() * 0.28,
+      gap: spacing * (0.86 + Math.random() * 0.16),
       hoverUntil: 0,
       hoverCooldown: 0,
       hoverClip: "Wave",
@@ -189,7 +219,7 @@ async function boot() {
       leanZ: 0,
       gait: 0,
       walking: false,
-      scale: 0.6 + (i % 3) * 0.025,
+      scale: (0.6 + (i % 3) * 0.025) * role.size,
     });
   }
   // Start already packed; personal spacing persists as the queue advances.
@@ -222,7 +252,10 @@ async function boot() {
   let dirtCursor = 0;
   const dirt = new THREE.InstancedMesh(
     new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshToonMaterial({ color: palette["color-illustration-fur"], gradientMap: ramp }),
+    new THREE.MeshToonMaterial({
+      color: palette["color-illustration-fur"],
+      gradientMap: ramp,
+    }),
     dirtPool.length,
   );
   dirt.frustumCulled = false;
@@ -232,13 +265,139 @@ async function boot() {
   holeGeometry.rotateX(-Math.PI / 2);
   const holes = new THREE.InstancedMesh(
     holeGeometry,
-    new THREE.MeshBasicMaterial({ color: palette["color-illustration-burrow"], side: THREE.DoubleSide }),
+    new THREE.MeshBasicMaterial({
+      color: palette["color-illustration-burrow"],
+      side: THREE.DoubleSide,
+    }),
     count,
   );
   holes.count = 0;
   holes.frustumCulled = false;
   holes.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
   scene.add(holes);
+  // Spoil heaps. Chunky enough to read at this pixel size, and shared by the
+  // moles that surface and by the tunneller chasing the pointer.
+  const moundGeometry = new THREE.ConeGeometry(1, 0.9, 8);
+  moundGeometry.translate(0, 0.44, 0);
+  const mounds = new THREE.InstancedMesh(
+    moundGeometry,
+    new THREE.MeshToonMaterial({
+      color: palette["color-illustration-fur"],
+      gradientMap: ramp,
+    }),
+    48,
+  );
+  mounds.count = 0;
+  mounds.frustumCulled = false;
+  mounds.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+  scene.add(mounds);
+  const moundPool = Array.from({ length: 44 }, () => ({
+    born: -100,
+    x: 0,
+    z: 0,
+    radius: 0,
+    life: 1,
+  }));
+  let moundCursor = 0;
+  function addMound(x, z, radius, life) {
+    Object.assign(moundPool[moundCursor++ % moundPool.length], {
+      born: time,
+      x,
+      z,
+      radius,
+      life,
+    });
+  }
+
+  // Second particle layer: the fine dust that lifts off a fresh heap and fans
+  // out flat, where the existing dirt is heavy tumbling clods.
+  const puffGeometry = new THREE.PlaneGeometry(1, 1);
+  puffGeometry.rotateX(-Math.PI / 2);
+  const puffs = new THREE.InstancedMesh(
+    puffGeometry,
+    new THREE.MeshBasicMaterial({
+      color: palette["color-illustration-light"],
+      transparent: true,
+      opacity: 0.5,
+      depthWrite: false,
+    }),
+    96,
+  );
+  puffs.count = 0;
+  puffs.frustumCulled = false;
+  puffs.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+  scene.add(puffs);
+  const puffPool = Array.from({ length: 96 }, () => ({
+    born: -100,
+    x: 0,
+    z: 0,
+    vx: 0,
+    vz: 0,
+    size: 0,
+    spin: 0,
+  }));
+  let puffCursor = 0;
+  function puff(x, z, strength = 1, n = 3) {
+    for (let j = 0; j < n; j++) {
+      const p = puffPool[puffCursor++ % puffPool.length],
+        angle = Math.random() * Math.PI * 2;
+      Object.assign(p, {
+        born: time,
+        x,
+        z,
+        vx: Math.cos(angle) * (0.45 + Math.random()) * strength,
+        vz: Math.sin(angle) * (0.45 + Math.random()) * strength,
+        size: (0.2 + Math.random() * 0.26) * strength,
+        spin: Math.random() * Math.PI,
+      });
+    }
+  }
+
+  // The tunneller: a mole under the floor chasing the pointer on a spring.
+  const ground = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+  const burrower = {
+    x: 0,
+    z: 0,
+    vx: 0,
+    vz: 0,
+    tx: 0,
+    tz: 0,
+    active: false,
+    speed: 0,
+    press: -1,
+    hold: 0,
+    lastTrail: -100,
+    quaked: false,
+  };
+  let quake = -100;
+  let pushedCount = 0,
+    maxClear = 0;
+  const cameraHome = new THREE.Vector3(0, 15, 24);
+
+  const heapList = [];
+  /** Heaps currently big enough to displace an attendee. */
+  function heaps() {
+    heapList.length = 0;
+    const HALO = 1.35;
+    if (burrower.active)
+      heapList.push({
+        x: burrower.x,
+        z: burrower.z,
+        reach:
+          0.46 +
+          Math.min(0.34, burrower.speed * 0.055) +
+          burrower.hold * 0.95 +
+          HALO,
+      });
+    for (const m of moundPool) {
+      const age = time - m.born;
+      if (age < 0 || age > m.life || m.radius < 0.2) continue;
+      const settle = 1 - THREE.MathUtils.smoothstep(age, m.life * 0.55, m.life);
+      const r = m.radius * THREE.MathUtils.smoothstep(age, 0, 0.22) * settle;
+      if (r > 0.12) heapList.push({ x: m.x, z: m.z, reach: r + HALO * 0.7 });
+    }
+    return heapList;
+  }
   const dirtPose = new THREE.Object3D();
   function burst(a) {
     for (let j = 0; j < 14; j++) {
@@ -473,7 +632,21 @@ async function boot() {
   renderer.domElement.addEventListener("pointerdown", (e) => {
     if (!e.isPrimary || e.button !== 0) return;
     const i = pick(e);
-    if (i < 0) return;
+    if (i < 0) {
+      // Nothing to pick up: dig instead.
+      setRay(e);
+      if (ray.ray.intersectPlane(ground, hit)) {
+        burrower.tx = THREE.MathUtils.clamp(hit.x, -26, 14);
+        burrower.tz = THREE.MathUtils.clamp(hit.z, -22, 10);
+        burrower.active = true;
+        burrower.press = time;
+        burrower.quaked = false;
+        addMound(burrower.x, burrower.z, 0.5, 1.7);
+        puff(burrower.x, burrower.z, 1, 4);
+        dirty = true;
+      }
+      return;
+    }
     selected = i;
     pendingPress = { index: i, x: e.clientX, y: e.clientY };
     pointerId = e.pointerId;
@@ -508,15 +681,26 @@ async function boot() {
     if (held >= 0) {
       if (ray.ray.intersectPlane(dragPlane, hit)) {
         dragTarget.copy(hit).add(dragOffset);
-        dragTarget.y = THREE.MathUtils.clamp(dragTarget.y + 1.0, 0.6, 3.2);
-        dragTarget.x = THREE.MathUtils.clamp(dragTarget.x, -9, 9);
-        dragTarget.z = THREE.MathUtils.clamp(dragTarget.z, -4, 4);
+        dragTarget.y = THREE.MathUtils.clamp(dragTarget.y + 1.0, 0.6, 10);
+        dragTarget.x = THREE.MathUtils.clamp(dragTarget.x, -24, 13);
+        dragTarget.z = THREE.MathUtils.clamp(dragTarget.z, -20, 8);
       }
       dirty = true;
       return;
     }
     hovered = pick(e);
     selected = hovered >= 0 ? hovered : selected;
+    if (ray.ray.intersectPlane(ground, hit)) {
+      burrower.tx = THREE.MathUtils.clamp(hit.x, -26, 14);
+      burrower.tz = THREE.MathUtils.clamp(hit.z, -22, 10);
+      if (!burrower.active) {
+        // Surface where the pointer entered rather than sliding in from 0,0.
+        burrower.x = burrower.tx;
+        burrower.z = burrower.tz;
+        burrower.vx = burrower.vz = 0;
+        burrower.active = true;
+      }
+    }
     if (ray.ray.intersectPlane(flat, hit)) {
       pointer.x = hit.x;
       pointer.z = hit.z;
@@ -535,7 +719,74 @@ async function boot() {
     }
     dirty = true;
   });
+  const heroElement = host.closest(".con-hero");
+  heroElement.addEventListener("pointermove", (e) => {
+    if (held >= 0 || !e.isPrimary) return;
+    setRay(e);
+    if (!ray.ray.intersectPlane(ground, hit)) return;
+    burrower.tx = THREE.MathUtils.clamp(hit.x, -26, 14);
+    burrower.tz = THREE.MathUtils.clamp(hit.z, -22, 10);
+    if (!burrower.active) {
+      burrower.x = burrower.tx;
+      burrower.z = burrower.tz;
+      burrower.vx = burrower.vz = 0;
+      burrower.active = true;
+    }
+    dirty = true;
+  });
+  heroElement.addEventListener("pointerleave", () => {
+    burrower.active = false;
+    burrower.press = -1;
+  });
+  renderer.domElement.addEventListener("pointercancel", () => {
+    burrower.press = -1;
+  });
   renderer.domElement.addEventListener("pointerup", () => {
+    if (burrower.press >= 0) {
+      // Let go and the ground gives: everything jumps, the spoil flies.
+      if (burrower.hold > 0.35) {
+        quake = time;
+        for (const a of actors) {
+          if (a.burrow) continue;
+          const d = Math.hypot(
+            a.x + a.dx - burrower.x,
+            a.z + a.dz - burrower.z,
+          );
+          // The lift spring is stiff, so vy barely registers. Reuse the jump
+          // the scene already animates, staggered by distance, so the jolt
+          // travels outward instead of everyone hopping at once.
+          a.celebrateStart = time + Math.min(0.5, d * 0.035);
+          a.celebrateUntil = 0;
+          const felt = Math.max(0.2, 1 - d / 16);
+          a.vx += (Math.random() - 0.5) * 9 * felt;
+          a.vz += (Math.random() - 0.5) * 9 * felt;
+          a.headPush.x += (Math.random() - 0.5) * burrower.hold * felt;
+          a.headPush.z += (Math.random() - 0.5) * burrower.hold * felt;
+        }
+        puff(burrower.x, burrower.z, 1.4 + burrower.hold, 18);
+        for (let j = 0; j < 24; j++) {
+          const p = dirtPool[dirtCursor++ % dirtPool.length],
+            angle = Math.random() * Math.PI * 2;
+          Object.assign(p, {
+            born: time,
+            x: burrower.x + Math.cos(angle) * burrower.hold,
+            z: burrower.z + Math.sin(angle) * burrower.hold * 0.8,
+            vx: Math.cos(angle) * (2.2 + Math.random() * 2.6),
+            vz: Math.sin(angle) * (2.2 + Math.random() * 2.6),
+            vy: 2.8 + Math.random() * 2.6,
+            size: 0.13 + Math.random() * 0.22,
+          });
+        }
+      }
+      addMound(
+        burrower.x,
+        burrower.z,
+        0.45 + burrower.hold * 1.35,
+        1.6 + burrower.hold,
+      );
+      puff(burrower.x, burrower.z, 0.9 + burrower.hold, 4);
+      burrower.press = -1;
+    }
     const click = pendingPress;
     pendingPress = null;
     if (click) {
@@ -677,11 +928,13 @@ async function boot() {
   });
   motionUI();
   function resize() {
+    // One step finer than the original 2/4/5. Narrow screens stay at 2: a
+    // 1px "pixel" is no pixelation at all.
     const quality = matchMedia("(max-width: 600px)").matches
       ? 2
       : matchMedia("(max-width: 1000px)").matches
-        ? 4
-        : 5;
+        ? 3
+        : 4;
     metrics.pixelSize = quality;
     const w = host.clientWidth,
       h = host.clientHeight,
@@ -691,12 +944,21 @@ async function boot() {
     renderer.setSize(rw, rh, false);
     pixel.setSize(rw, rh);
     metrics.resolution = [rw, rh];
-    const hw = w < 600 ? 10.1 : 10.5,
+    // Narrow screens keep the whole line centred and simply sit it in the
+    // lower half; there is not enough width there to spend on an overflow.
+    const narrow = w < 760;
+    const hw = narrow ? 8.9 : 8.6,
       hh = (hw * h) / w;
-    camera.position.set(0, 15, 24);
+    cameraHome.set(0, 15, 24);
+    camera.position.copy(cameraHome);
     camera.lookAt(0, 0.7, 0);
-    camera.left = -hw;
-    camera.right = hw;
+    // The queue spans x -8.2..8.2. On wide screens park the right edge of the
+    // frame partway along it so the head of the line — and the turn behind it —
+    // carry on past the edge instead of reading as a loop you can see all of.
+    const lineRight = 8.2;
+    const viewRight = narrow ? hw : lineRight - OFF_SCREEN * (lineRight * 2);
+    camera.left = viewRight - hw * 2;
+    camera.right = viewRight;
     // Keep the queue in its original lower band while allowing picked-up moles
     // to render throughout the full hero, including the heading area.
     const stage = host.closest(".con-hero").querySelector(".con-stage");
@@ -716,14 +978,29 @@ async function boot() {
     for (const a of actors) a.wiggle.reset();
     dirty = true;
   }
+  // The hero panel is position:sticky, so intersection alone always reports
+  // true. curtains.ts publishes whether the schedule has scrolled over the
+  // top of it; both have to agree before we spend a frame.
+  let onScreen = true;
+  let covered = host.dataset.covered === "true";
+  const applyVisibility = () => {
+    const next = onScreen && !covered;
+    if (next === visible) return;
+    visible = next;
+    if (!visible) release();
+    resetTime();
+  };
   new IntersectionObserver(
     (entries) => {
-      visible = entries[0].isIntersecting;
-      if (!visible) release();
-      resetTime();
+      onScreen = entries[0].isIntersecting;
+      applyVisibility();
     },
     { rootMargin: "40px" },
   ).observe(host);
+  host.addEventListener("hero-covered", (event) => {
+    covered = event.detail.covered;
+    applyVisibility();
+  });
   document.addEventListener("visibilitychange", () => {
     release();
     resetTime();
@@ -838,12 +1115,46 @@ async function boot() {
       blockers,
       motion ? dt * 0.9 : 0,
     );
+    pushedCount = 0;
+    maxClear = 0;
+    // Spring the tunneller toward the pointer; it throws spoil while digging.
+    burrower.hold =
+      burrower.press >= 0
+        ? Math.min(1.45, (time - burrower.press) * 0.9)
+        : burrower.hold * Math.exp(-dt * 2.4);
+    if (burrower.active && motion) {
+      burrower.vx += ((burrower.tx - burrower.x) * 30 - burrower.vx * 9) * dt;
+      burrower.vz += ((burrower.tz - burrower.z) * 30 - burrower.vz * 9) * dt;
+      burrower.x += burrower.vx * dt;
+      burrower.z += burrower.vz * dt;
+      burrower.speed = Math.hypot(burrower.vx, burrower.vz);
+      const digging = burrower.speed > 1.1 || burrower.press >= 0;
+      if (digging && time - burrower.lastTrail > 0.055) {
+        burrower.lastTrail = time;
+        const p = dirtPool[dirtCursor++ % dirtPool.length],
+          angle = Math.random() * Math.PI * 2;
+        Object.assign(p, {
+          born: time,
+          x: burrower.x,
+          z: burrower.z,
+          vx: Math.cos(angle) * (0.9 + Math.random()),
+          vz: Math.sin(angle) * (0.9 + Math.random()),
+          vy: 1.3 + Math.random() * 1.5,
+          size: 0.09 + Math.random() * 0.13,
+        });
+        puff(burrower.x, burrower.z, 0.7 + burrower.hold, 2);
+        // The spoil left behind reads as the tunnel it just dug.
+        addMound(burrower.x, burrower.z, 0.28 + burrower.hold * 0.35, 1.9);
+      }
+    } else burrower.speed = 0;
     metrics.heldUp = actors.filter((a) => !a.burrow && a.s <= blockAt).length;
     metrics.burrowing = actors.filter((a) => a.burrow).length;
     for (let i = 0; i < count; i++) {
       const a = actors[i];
       if (a.emerge >= 0 && !a.dirtStarted && motion) {
         burst(a);
+        addMound(a.x + a.dx, a.z + a.dz, 1.05, 3.4);
+        puff(a.x + a.dx, a.z + a.dz, 1.25, 6);
         a.dirtStarted = true;
       }
       if (
@@ -859,6 +1170,8 @@ async function boot() {
           a.lift *= Math.exp(-dt * 8);
           if (age > 1.05 && !a.burrow.dirt) {
             burst(a);
+            addMound(a.x + a.dx, a.z + a.dz, 0.95, 3.0);
+            puff(a.x + a.dx, a.z + a.dz, 1.1, 5);
             a.burrow.dirt = true;
           }
           if (age > 4) {
@@ -964,6 +1277,34 @@ async function boot() {
           fz =
             (Math.abs(pz) < 0.05 ? (i % 2 ? -1 : 1) : pz / Math.max(d, 0.2)) *
             f;
+        }
+      }
+      // Soil in the way. The queue spring is stiff (44), so a plain force barely
+      // dents it — displace the target slot instead and the mole is carried
+      // clear of the heap, then walks back once it has passed.
+      if (motion && held !== i && !a.burrow && a.emerge >= 1.6) {
+        for (const heap of heaps(a)) {
+          const bx = a.x + a.dx - heap.x,
+            bz = a.z + a.dz - heap.z,
+            bd = Math.hypot(bx, bz);
+          if (bd >= heap.reach) continue;
+          const nx = bd < 0.05 ? (i % 2 ? 1 : -1) : bx / Math.max(bd, 0.12),
+            nz = bd < 0.05 ? (i % 2 ? -1 : 1) : bz / Math.max(bd, 0.12),
+            clear = heap.reach - bd;
+          tx += nx * clear;
+          tz += nz * clear;
+          pushedCount++;
+          maxClear = Math.max(maxClear, clear);
+          const lean = Math.min(1, clear / heap.reach);
+          a.headPush.x += (nx * lean - a.headPush.x) * Math.min(1, dt * 12);
+          a.headPush.z += (nz * lean - a.headPush.z) * Math.min(1, dt * 12);
+          fx += nx * lean * 7;
+          fz += nz * lean * 7;
+          if (time > a.hoverCooldown && held < 0) {
+            a.hoverClip = "Point";
+            a.hoverUntil = time + 1.4;
+            a.hoverCooldown = time + 3.5;
+          }
         }
       }
       if (!motion) {
@@ -1096,7 +1437,75 @@ async function boot() {
     }
     dirt.count = activeDirt;
     dirt.instanceMatrix.needsUpdate = true;
-    metrics.particles = activeDirt;
+    const quakeAge = time - quake;
+    if (quakeAge >= 0 && quakeAge < 0.6) {
+      const k = (1 - quakeAge / 0.6) ** 2;
+      camera.position.set(
+        cameraHome.x + Math.sin(quakeAge * 74) * 0.42 * k,
+        cameraHome.y + Math.cos(quakeAge * 63) * 0.34 * k,
+        cameraHome.z,
+      );
+    } else if (!camera.position.equals(cameraHome)) {
+      camera.position.copy(cameraHome);
+    }
+    let moundCount = 0;
+    // The live heap riding over the tunneller, swelling while the button is held.
+    if (burrower.active && moundCount < 48) {
+      const r =
+        0.46 + Math.min(0.34, burrower.speed * 0.055) + burrower.hold * 0.95;
+      dirtPose.position.set(burrower.x, 0, burrower.z);
+      dirtPose.rotation.set(0, burrower.x * 0.7, 0);
+      dirtPose.scale.set(r, 0.55 + burrower.hold * 0.5, r * 0.78);
+      dirtPose.updateMatrix();
+      mounds.setMatrixAt(moundCount++, dirtPose.matrix);
+    }
+    for (const m of moundPool) {
+      const age = time - m.born;
+      if (age < 0 || age > m.life || moundCount >= 48) continue;
+      // Heave up fast, then slump back into the floor.
+      const rise = THREE.MathUtils.smoothstep(age, 0, 0.22);
+      const settle = 1 - THREE.MathUtils.smoothstep(age, m.life * 0.55, m.life);
+      const r = m.radius * rise * (0.55 + 0.45 * settle);
+      if (r <= 0.002) continue;
+      dirtPose.position.set(m.x, 0, m.z);
+      dirtPose.rotation.set(0, m.x * 1.3 + m.z, 0);
+      dirtPose.scale.set(r, r * (0.5 + 0.35 * settle), r * 0.78);
+      dirtPose.updateMatrix();
+      mounds.setMatrixAt(moundCount++, dirtPose.matrix);
+    }
+    mounds.count = moundCount;
+    mounds.instanceMatrix.needsUpdate = true;
+    let activePuffs = 0;
+    for (const p of puffPool) {
+      const age = time - p.born;
+      if (age < 0 || age > 0.85) continue;
+      const t = age / 0.85;
+      // Bloom out of the heap, then thin away to nothing.
+      const scale =
+        p.size * (0.4 + t * 2.2) * (1 - THREE.MathUtils.smoothstep(t, 0.35, 1));
+      if (scale <= 0.002) continue;
+      const drag = 1 - Math.exp(-age * 3.2);
+      dirtPose.position.set(
+        p.x + p.vx * drag,
+        0.05 + age * 0.35,
+        p.z + p.vz * drag,
+      );
+      dirtPose.rotation.set(0, p.spin + age, 0);
+      dirtPose.scale.set(scale, 1, scale);
+      dirtPose.updateMatrix();
+      puffs.setMatrixAt(activePuffs++, dirtPose.matrix);
+    }
+    puffs.count = activePuffs;
+    puffs.instanceMatrix.needsUpdate = true;
+    metrics.particles = activeDirt + activePuffs;
+    metrics.mounds = moundCount;
+    metrics.heaps = heaps().length;
+    metrics.pushed = pushedCount;
+    metrics.maxClear = +maxClear.toFixed(2);
+    metrics.maxShift = +Math.max(
+      ...actors.map((a) => Math.hypot(a.dx, a.dz)),
+    ).toFixed(2);
+    metrics.tunneller = burrower.active ? +burrower.speed.toFixed(2) : "idle";
     metrics.queueState = queueState.moving ? "moving" : "waiting";
     metrics.chatting = actors.filter((a) => a.partner >= 0).length;
     metrics.emerging = actors.filter((a) => !a.burrow && a.emerge < 1.6).length;
@@ -1156,7 +1565,10 @@ async function boot() {
       .map((a) => a.activity);
     const tooltip = $("con-tooltip"),
       index = held >= 0 ? held : hovered;
-    tooltip.hidden = index < 0 || activeMessages.length > 0 || (index >= 0 && (actors[index].burrow || actors[index].emerge < 1.6));
+    tooltip.hidden =
+      index < 0 ||
+      activeMessages.length > 0 ||
+      (index >= 0 && (actors[index].burrow || actors[index].emerge < 1.6));
     if (index >= 0) {
       const a = actors[index];
       projection.set(a.x + a.dx, a.lift + 2.2, a.z + a.dz).project(camera);

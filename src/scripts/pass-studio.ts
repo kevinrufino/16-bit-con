@@ -1,5 +1,6 @@
 import { token, ticketPapers } from "../design/tokens";
 import { tearTicket } from "./ticket-tear";
+import { createDitherPass, ditherThreshold } from "./dither-pass";
 const names = ["Daydream", "High score", "After hours"];
 const papers = ticketPapers;
 const ink = token("color-text");
@@ -153,8 +154,35 @@ function stop() {
 const stage = document.querySelector<HTMLElement>(".pass-stage")!;
 const auraHost = document.querySelector<HTMLElement>(".footer-curtain")!;
 const aura = document.querySelector<HTMLCanvasElement>(".pass-aura")!;
-const auraCtx = aura.getContext("2d")!;
-const bayer = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+// Same field, same dither, on the GPU. The CPU path below stays as the
+// fallback for browsers without WebGL2 — getContext is one-shot per canvas,
+// so which context we hold is decided here, once.
+const auraPass = createDitherPass(
+  aura,
+  `uniform vec2 aura, cursor, host;
+   uniform float cursorOpacity;
+   uniform vec3 color;
+   void main() {
+     vec2 n = vec2(uv.x, 1.0 - uv.y);
+     float dx = (n.x - aura.x) / 0.36;
+     float dy = (n.y - aura.y) / min(0.5, 650.0 / host.y);
+     float distance = dx * dx + dy * dy;
+     float wave = sin(n.x * 22.0 + n.y * 13.0) * 0.08
+                + cos(n.y * 25.0 - n.x * 8.0) * 0.08;
+     float cx = ((n.x - cursor.x) * host.x) / 110.0;
+     float cy = ((n.y - cursor.y) * host.y) / 85.0;
+     float cloud = 1.0 - cx * cx - cy * cy
+                 + sin(cx * 5.0 + cy * 3.0) * 0.16
+                 + cos(cy * 6.0 - cx * 2.0) * 0.12;
+     float density = max(0.0, max(min(0.85, 1.0 - distance + wave),
+                                  min(0.8, cloud) * cursorOpacity));
+     vec2 pixel = vec2(gl_FragCoord.x, resolution.y - gl_FragCoord.y);
+     if (density <= ditherThreshold(pixel)) discard;
+     float alpha = 0.12 + density * 0.36;
+     frag = vec4(color * alpha, alpha);
+   }`,
+);
+const auraCtx = auraPass ? null : aura.getContext("2d");
 let auraX = 0.5,
   auraY = 0.48,
   targetX = 0.5,
@@ -205,20 +233,27 @@ function hideCursorCloud() {
 }
 auraHost.addEventListener("pointerleave", hideCursorCloud);
 window.addEventListener("scroll", hideCursorCloud, { passive: true });
+// The guard above swallows updates while the footer is covered; repaint once
+// it is revealed so the field is correct the moment it becomes visible.
+new MutationObserver(() => {
+  if (!auraHost.inert) requestAura();
+}).observe(auraHost, { attributes: true, attributeFilter: ["inert", "style"] });
 window.addEventListener("blur", hideCursorCloud);
-function drawAura() {
-  auraFrame = 0;
-  const still = reducedMotion.matches;
-  auraX += (targetX - auraX) * (still ? 1 : 0.14);
-  auraY += (targetY - auraY) * (still ? 1 : 0.14);
-  auraColor = auraColor.map(
-    (c, i) => c + (targetColor[i] - c) * (still ? 1 : 0.14),
-  );
-  cursorX += (cursorTargetX - cursorX) * (still ? 1 : 0.18);
-  cursorY += (cursorTargetY - cursorY) * (still ? 1 : 0.18);
-  cursorOpacity += (cursorTargetOpacity - cursorOpacity) * (still ? 1 : 0.18);
+function paintAura() {
   const w = aura.width,
     h = aura.height;
+  if (!w || !h) return;
+  if (auraPass) {
+    auraPass.draw({
+      aura: [auraX, auraY],
+      cursor: [cursorX, cursorY],
+      host: [auraHost.clientWidth, auraHost.clientHeight],
+      cursorOpacity,
+      color: auraColor.map((c) => Math.round(c) / 255),
+    });
+    return;
+  }
+  if (!auraCtx) return;
   auraCtx.clearRect(0, 0, w, h);
   for (let y = 0; y < h; y++)
     for (let x = 0; x < w; x++) {
@@ -242,11 +277,24 @@ function drawAura() {
         Math.min(0.85, 1 - distance + wave),
         Math.min(0.8, cloud) * cursorOpacity,
       );
-      if (density > (bayer[(y % 4) * 4 + (x % 4)] + 0.5) / 16) {
+      if (density > ditherThreshold(x, y)) {
         auraCtx.fillStyle = `rgba(${auraColor.map(Math.round).join(",")},${0.12 + density * 0.36})`;
         auraCtx.fillRect(x, y, 1, 1);
       }
     }
+}
+function drawAura() {
+  auraFrame = 0;
+  const still = reducedMotion.matches;
+  auraX += (targetX - auraX) * (still ? 1 : 0.14);
+  auraY += (targetY - auraY) * (still ? 1 : 0.14);
+  auraColor = auraColor.map(
+    (c, i) => c + (targetColor[i] - c) * (still ? 1 : 0.14),
+  );
+  cursorX += (cursorTargetX - cursorX) * (still ? 1 : 0.18);
+  cursorY += (cursorTargetY - cursorY) * (still ? 1 : 0.18);
+  cursorOpacity += (cursorTargetOpacity - cursorOpacity) * (still ? 1 : 0.18);
+  paintAura();
   if (
     !still &&
     (Math.abs(cursorOpacity - cursorTargetOpacity) > 0.005 ||
@@ -259,6 +307,11 @@ function drawAura() {
     auraFrame = requestAnimationFrame(drawAura);
 }
 function requestAura() {
+  // curtains.ts parks the footer at visibility:hidden + inert until the
+  // schedule scrolls clear. A global scroll listener feeds this function, so
+  // without the guard the field repaints for every scroll of the whole page
+  // while its canvas is not on screen.
+  if (auraHost.inert) return;
   if (!auraFrame) auraFrame = requestAnimationFrame(drawAura);
 }
 function focusAura(p: number) {
@@ -270,8 +323,13 @@ function focusAura(p: number) {
   requestAura();
 }
 new ResizeObserver(() => {
-  aura.width = Math.ceil(auraHost.clientWidth / 8);
-  aura.height = Math.ceil(auraHost.clientHeight / 8);
+  const w = Math.ceil(auraHost.clientWidth / 8);
+  const h = Math.ceil(auraHost.clientHeight / 8);
+  if (auraPass) auraPass.resize(w, h);
+  else {
+    aura.width = w;
+    aura.height = h;
+  }
   if (active >= 0) focusAura(active);
   requestAura();
 }).observe(auraHost);

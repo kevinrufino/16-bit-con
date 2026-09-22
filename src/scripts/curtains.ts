@@ -15,6 +15,8 @@ panels.forEach((panel) => sizePanels.observe(panel));
 const curtain = document.querySelector<HTMLElement>(".schedule-curtain")!;
 const footer = document.querySelector<HTMLElement>(".footer-curtain")!;
 const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+const hero = document.querySelector<HTMLElement>(".hero-curtain");
+const heroWorld = document.getElementById("con-world");
 function revealFooter() {
   const visible =
     reduced.matches ||
@@ -22,10 +24,27 @@ function revealFooter() {
   footer.style.visibility = visible ? "visible" : "hidden";
   footer.inert = !visible;
 }
-window.addEventListener("scroll", revealFooter, { passive: true });
-window.addEventListener("resize", revealFooter);
-reduced.addEventListener("change", revealFooter);
-revealFooter();
+// The hero panel is sticky, so its own IntersectionObserver reports it as
+// on-screen at every scroll position — including where the schedule has
+// scrolled fully over it. Publish the real state so the WebGL queue can idle
+// instead of rendering 318k triangles behind an opaque panel.
+function markHeroCovered() {
+  if (!hero || !heroWorld) return;
+  const covered = curtain.getBoundingClientRect().top <= 0;
+  if (covered === (heroWorld.dataset.covered === "true")) return;
+  heroWorld.dataset.covered = String(covered);
+  heroWorld.dispatchEvent(
+    new CustomEvent("hero-covered", { detail: { covered } }),
+  );
+}
+function onViewportChange() {
+  revealFooter();
+  markHeroCovered();
+}
+window.addEventListener("scroll", onViewportChange, { passive: true });
+window.addEventListener("resize", onViewportChange);
+reduced.addEventListener("change", onViewportChange);
+onViewportChange();
 
 // Sticky panel rectangles describe their pinned position, not their place in
 // the document. Resolve footer anchors against the end of the curtain.

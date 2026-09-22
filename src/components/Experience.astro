@@ -138,6 +138,15 @@
     border-bottom: 1px solid currentColor;
     min-height: var(--target-min);
   }
+  /* redaction.css sets the animated face to 0.82em, and Redaction's cap height
+     is ~8% shorter than Mondwest's on top of that — together the hover state
+     read about a quarter smaller than the resting numerals. Match the cap
+     height instead; hero-type.ts already squeezes the width back if the wider
+     face overflows. */
+  .experience-stats .font-frame {
+    font-size: 1.08em;
+    line-height: 1;
+  }
   .experience :global(.roll-digit) {
     display: inline-block;
     width: 0.58em;

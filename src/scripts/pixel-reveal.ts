@@ -1,4 +1,5 @@
 import { token } from "../design/tokens";
+import { BAYER_4X4 } from "./dither-pass";
 const playing = new WeakMap<HTMLElement, () => void>();
 const reduced = matchMedia("(prefers-reduced-motion: reduce)");
 export function stopPixelReveal(element: HTMLElement) {
@@ -78,7 +79,7 @@ export async function revealPixels(element: HTMLElement, pattern: string) {
   };
   reduced.addEventListener("change", onReduced);
   playing.set(element, cleanup);
-  const bayer = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+  const bayer = BAYER_4X4;
   function draw(time: number) {
     if (!start) start = time;
     const progress = Math.min(
