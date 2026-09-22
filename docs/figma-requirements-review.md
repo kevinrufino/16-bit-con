@@ -11,7 +11,7 @@ Restored the original seven-stop day map and original mole clothing colors on th
 - Replaced the seven-stop scroll journey with a compact agenda and three guided full-screen sessions from the sample copy. Matched the scene illustrations with a consistent editable pixel system.
 - Removed blue foreground/UI usage; added semantic tokens, a live design-system page, and shared canvas/Three.js palette output.
 - Published all 107 raster process studies from `design/asset-tests` in the raw-exploration gallery, plus conveyor notes. Historical draft routes remain available.
-- Verified that `https://sixteen-bit-con.vercel.app` responds publicly and that the linked repository exists. **The GitHub repository is private**: reviewers still need repository access or an authorized visibility change. No visibility or collaborator permissions were changed.
+- Verified that the site responds publicly at `https://16-bit-con.vercel.app` and that the repository is public at `https://github.com/kevinrufino/16-bit-con`. Both links are listed in the README. The project was re-published from an earlier private repository; the historical review below refers to that earlier remote.
 - The original 4–6 hour time budget is historical and cannot be retroactively fixed or independently verified. This expanded follow-up is additional requested work.
 
 Validation: production build succeeds; Astro checks report zero errors and warnings; all 19 tests pass. Browser checks cover desktop and mobile layouts, word hover reset, reduced motion, whole-session wheel/touch/keyboard navigation, schedule exits, ticket painting/deselection, and full-footer canvas bounds. The changes are prepared for the user-requested main-branch production deployment.

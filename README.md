@@ -2,8 +2,8 @@
 
 A fictional retro gaming convention built with Astro and Vega’s supplied brand system.
 
-- Live site: https://sixteen-bit-con.vercel.app
-- Repository: https://github.com/kevinrufino/sixteen-bit-con
+- Live site: https://16-bit-con.vercel.app
+- Repository: https://github.com/kevinrufino/16-bit-con
 - Working Figma: https://www.figma.com/design/IOaTIe2PBjpjxujIvQX5aT/
 - Original Figma: https://www.figma.com/design/ZfsnvhcUscelCq2PTmJ17k/
 
