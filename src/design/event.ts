@@ -31,7 +31,7 @@ export const sessions = [
   },
   {
     time: "6:00 PM",
-    title: "Vega after party.",
+    title: "The after party.",
     type: "After party",
     place: "Booth 630",
     detail:

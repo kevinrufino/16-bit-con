@@ -11,7 +11,7 @@ import { event } from "../design/event";
       New friends.
     </h2>
     <p>
-      Find Vega at Booth {event.booth}. Come for the pixels. Stay for the after
+      Find us at Booth {event.booth}. Come for the pixels. Stay for the after
       party.
     </p>
   </div>
@@ -51,7 +51,7 @@ import { event } from "../design/event";
     const status = document.querySelector("#booth-status")!;
     try {
       await navigator.clipboard.writeText(
-        "16-Bit Con · October 3–5, 2026 · Javits Center, New York · Vega, Booth 630 · After party at 6:00 PM. Fictional event.",
+        "16-Bit Con · October 3–5, 2026 · Javits Center, New York · Booth 630 · After party at 6:00 PM. Fictional event.",
       );
       status.textContent = "Booth details copied.";
     } catch {

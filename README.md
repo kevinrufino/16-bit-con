@@ -1,6 +1,6 @@
 # 16-Bit Con
 
-A fictional retro gaming convention built with Astro and Vega’s supplied brand system.
+A fictional retro gaming convention built with Astro as a design exercise.
 
 - Live site: https://16-bit-con.vercel.app
 - Repository: https://github.com/kevinrufino/16-bit-con
@@ -48,6 +48,6 @@ The souvenir editor supports painting, keyboard navigation, undo, reset, clear, 
 
 `src/design/tokens.json` is the source of truth. `npm run tokens` generates CSS variables and the public palette module; builds run this automatically. Components consume semantic roles. Canvas exports and the Three.js hero share the same definitions. See [the system guide](docs/design-system.md) and [the requirements review/resolution](docs/figma-requirements-review.md).
 
-Brand logo, PP Mondwest, Geist, and Geist Mono were supplied or sourced from Vega’s public brand site; they retain their owners’ rights. Redaction fonts are self-hosted with OFL license files. Motion references: https://craft.gustavofior.com/, https://pixel-text-reveal.vercel.app/, and https://interfaces.dev/cheat-sheet. The pixel reveal is an original Astro/Canvas implementation; no third-party application bundle is embedded.
+PP Mondwest, Geist, and Geist Mono retain their owners’ rights. Redaction fonts are self-hosted with OFL license files. Motion references: https://craft.gustavofior.com/, https://pixel-text-reveal.vercel.app/, and https://interfaces.dev/cheat-sheet. The pixel reveal is an original Astro/Canvas implementation; no third-party application bundle is embedded.
 
 Historical explorations retain their original palettes and artwork to show the design process. Deployment artifacts are static; no credentials are included in browser code.
