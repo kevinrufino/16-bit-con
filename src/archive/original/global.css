@@ -1143,3 +1143,10 @@ dialog .button {
     transition: none !important;
   }
 }
+
+.brand-mark {
+  font-family: 'PP Mondwest', Georgia, serif;
+  font-size: 30px;
+  line-height: 1;
+  white-space: nowrap;
+}

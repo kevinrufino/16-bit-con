@@ -43,7 +43,7 @@ The copy page explicitly allows adaptation. These are differences, not automatic
 | Tagline | The retro gaming convention for people who never stopped playing. | Matches |
 | Date | October 3–5, 2026 | October 24, 2026 |
 | Venue | Javits Center, New York | Jarvis Center, NY — retained from the user’s explicit instruction |
-| Agenda | 10:00 opening keynote; 2:00 pixel-art/AI panel; 6:00 Vega after-party at Booth 630 | Seven invented sessions from 9 am to 4 pm |
+| Agenda | 10:00 opening keynote; 2:00 pixel-art/AI panel; 6:00 after-party at Booth 630 | Seven invented sessions from 9 am to 4 pm |
 | CTA | Register now / Find us at Booth 630 | Get your pass / Make this my pass; creates a souvenir |
 
 If matching the sample event is desired, date, venue, schedule, visible ticket details, exported pass text, and metadata should be changed together. The venue spelling in Figma is **Javits**, not **Jarvis**. No event facts were changed as part of this review.

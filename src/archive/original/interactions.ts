@@ -6,7 +6,7 @@ let selected = "#0d5500";
 let colorName = "Leaf green";
 const colors = Array<string>(256).fill(blank);
 const paintStatus = document.querySelector<HTMLElement>("#paint-status")!;
-// A flower is a small invitation to remix Vega's organic brand language.
+// A flower is a small invitation to remix the event's organic brand language.
 const flower = [
   "0000000000000000",
   "0000000000000000",
@@ -176,7 +176,7 @@ document
     ctx.fillRect(0, 0, 1200, 650);
     ctx.fillStyle = "#001400";
     ctx.font = '24px "Geist Mono"';
-    ctx.fillText("VEGA PRESENTS / ALL ACCESS", 60, 70);
+    ctx.fillText("ADMIT ONE / ALL ACCESS", 60, 70);
     ctx.font = '150px "PP Mondwest"';
     ctx.fillText("16-Bit Con", 55, 240);
     ctx.font = "40px Geist";

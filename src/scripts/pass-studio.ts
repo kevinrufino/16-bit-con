@@ -608,7 +608,7 @@ document
     const foreground = p === 2 ? cream : ink;
     ctx.fillStyle = foreground;
     ctx.font = `20px ${token("font-mono")}`;
-    ctx.fillText("VEGA PRESENTS / ALL ACCESS", 48, 66);
+    ctx.fillText("ADMIT ONE / ALL ACCESS", 48, 66);
     ctx.font = `92px ${token("font-display")}`;
     ctx.fillText("16-Bit Con", 44, 175);
     ctx.font = `18px ${token("font-mono")}`;

@@ -1213,3 +1213,10 @@ dialog .button {
 #pass-dialog[data-lifting="true"] {
   outline: none;
 }
+
+.brand-mark {
+  font-family: 'PP Mondwest', Georgia, serif;
+  font-size: 30px;
+  line-height: 1;
+  white-space: nowrap;
+}

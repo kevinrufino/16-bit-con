@@ -4,7 +4,7 @@ Branch: `explore/scroll-schedule`. Based on committed main (`1e9fa01`), leaving 
 
 ## Direction
 
-Use the existing Vega palette: Daisy White #fffaeb, Leaf Green #0d5500, Deep Green #001400, Florets Yellow #ffd11b, Sky Blue #8dcaff. PP Mondwest carries the time and headlines; Geist carries descriptions; Geist Mono labels times and venues.
+Use the existing palette: Daisy White #fffaeb, Leaf Green #0d5500, Deep Green #001400, Florets Yellow #ffd11b, Sky Blue #8dcaff. PP Mondwest carries the time and headlines; Geist carries descriptions; Geist Mono labels times and venues.
 
 Desktop: [sticky day map, about two-thirds width] [scrolling narrative, one-third]. Mobile: a compact sticky map above the narrative. Text is left aligned. The day map is the expressive element; the narrative stays simple.
 
@@ -34,7 +34,7 @@ The existing pause control also pauses the video. Playback suspends when the cal
 
 ## Animated environment
 
-`CalendarEnvironment.astro` adds three stepped flower silhouettes based on the existing Vega-inspired pixel playground, with independently phased stem sway and flower-head motion. Three pale blue clouds drift at different speeds. The SVG sits behind the transparent mole canvas, below the calendar grid and session tiles. No new video or generated asset is needed. All environment animations honor the shared pause control and reduced-motion preference. Desktop and 390px mobile inspected; no horizontal overflow. Pause verified for both environment and mole. Build and type checks pass.
+`CalendarEnvironment.astro` adds three stepped flower silhouettes based on the existing pixel playground, with independently phased stem sway and flower-head motion. Three pale blue clouds drift at different speeds. The SVG sits behind the transparent mole canvas, below the calendar grid and session tiles. No new video or generated asset is needed. All environment animations honor the shared pause control and reduced-motion preference. Desktop and 390px mobile inspected; no horizontal overflow. Pause verified for both environment and mole. Build and type checks pass.
 
 ## Unified mosaic pass
 

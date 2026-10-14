@@ -1,4 +1,4 @@
-# Vega / 16-Bit Con design system
+# 16-Bit Con design system
 
 The code system is derived from the supplied Figma brand guidelines. View the live specimens at `/design-system`.
 
